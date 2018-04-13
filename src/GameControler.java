@@ -35,6 +35,7 @@ public class GameControler {
 			        player2Fields.felderArray[c][r].changeColorSetShip();
 				}
 			}
+			player1Fields.setShipComputer();
 		}
 	}
 

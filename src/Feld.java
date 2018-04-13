@@ -26,7 +26,7 @@ public class Feld {
 	}
 
 	void changeColorSetShip(){
-		if(myZustand == 2) {
+		if(myZustand == 2 || myZustand == 1) {
 			myZustand = 0;
 		}
 	}

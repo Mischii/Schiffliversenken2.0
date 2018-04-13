@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class PlayField {
 		PApplet parent;
@@ -113,6 +114,26 @@ public class PlayField {
 		      }
 		    }
 		  }
+		  /**
+			  *  Computer tries to set a a ship component
+			  *   if first: set only on state 0
+			  *   else set only on state 1
+			  *   update water
+			  *   update environement
+			  */
+		  void setShipComputer(){
+			  while (platzierteSchiffli<6) {
+				  int column = ThreadLocalRandom.current().nextInt(0,9);
+				  int row = ThreadLocalRandom.current().nextInt(0,9);
+				  tryToSetetShip(column, row);
+				  System.out.println("Next("+column+","+row+")");
+			  }
+		  }
+		  
+		  
+		  
+		  
+		  
 
 		  void lockLastWaterCrossPart (int column, int row) {
 		     if (row > 0) 
