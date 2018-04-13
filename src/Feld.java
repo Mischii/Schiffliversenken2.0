@@ -25,6 +25,10 @@ public class Feld {
 		myZustand = newZ;
 	}
 
-
+	void changeColorSetShip(){
+		if(myZustand == 2) {
+			myZustand = 0;
+		}
+	}
 
 }

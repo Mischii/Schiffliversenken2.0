@@ -7,8 +7,6 @@ public class GameControler {
 	Background bGround;
 	PlayField player1Fields;
 	PlayField player2Fields;
-	boolean startShoot = false;
-	boolean placeShip = false;
 
 	GameControler(PApplet p) {
 		parent = p;
@@ -24,15 +22,19 @@ public class GameControler {
 		bGround.show(player1Fields, player2Fields);
 		myShape.drawButton((float)(parent.width*0.45),(float)(parent.height*0.1),"Gfächt startä");
 	}
-	//ueberpruefung des Buttons
+	//überprüfung des Buttons
 	void buttonClicked(){       
 		player2Fields.mouseCheck();
 		float x = parent.mouseX;
 		float y = parent.mouseY;
-		boolean startShoot = false;
-		//Button fuer den Gefaechtstart ueberpruefen
-		if((startShoot == true)&& myShape.checkHitboxButton(x,y,(float)(parent.width*0.45),(float)(parent.height*0.1))){
+		//Button für den Gefächtstart überprüfen
+		if((player2Fields.isPlacingAShip() == false)&& myShape.checkHitboxButton(x,y,(float)(parent.width*0.45),(float)(parent.height*0.1))){
 			parent.background(0,0,0);
+			for (int r = 0; r <= 9; r++){
+				for (int c = 0;  c<=9;c++){
+			        player2Fields.felderArray[c][r].changeColorSetShip();
+				}
+			}
 		}
 	}
 
