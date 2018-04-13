@@ -1,3 +1,4 @@
+package schiffeversenken;
 import processing.core.PApplet;
 
 public class Feld {

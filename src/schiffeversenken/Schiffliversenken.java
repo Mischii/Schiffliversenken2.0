@@ -1,9 +1,10 @@
+package schiffeversenken;
 import processing.core.PApplet;
 
 public class Schiffliversenken extends PApplet{
 
 	public static void main(String[] args) {
-		PApplet.main("Schiffliversenken");
+		PApplet.main("schiffeversenken2.Schiffliversenken");
 	}
 
 	GameControler myGame;

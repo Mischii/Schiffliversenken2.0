@@ -1,3 +1,4 @@
+package schiffeversenken;
 import processing.core.PApplet;
 import java.util.concurrent.ThreadLocalRandom;
 
