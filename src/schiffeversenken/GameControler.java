@@ -6,6 +6,7 @@ public class GameControler {
 	Shape myShape;
 	Feld myFeld;
 	Background bGround;
+	Variables myVar;
 	PlayField player1Fields;
 	PlayField player2Fields;
 
@@ -14,8 +15,10 @@ public class GameControler {
 		myShape = new Shape(parent);
 		myFeld = new Feld(parent);
 		bGround = new Background(parent);
+		myVar = new Variables(parent);
 		player1Fields = new PlayField(parent);
 		player2Fields = new PlayField(parent);
+		player2Fields.setSchiffli = true;
 	}
 
 	//Zeigt zwei Spielfelder und zwei Button
@@ -24,22 +27,37 @@ public class GameControler {
 		myShape.drawButton((float)(parent.width*0.45),(float)(parent.height*0.1),"Gfächt startä");
 	}
 	//überprüfung des Buttons
-	void buttonClicked(){       
-		player2Fields.mouseCheck();
+	void buttonClicked(){  
+		//player2Fields.mouseCheck();
 		float x = parent.mouseX;
 		float y = parent.mouseY;
+		int column;
+		int row;
+		row = (int)((y-(myVar.tBorder))/(myVar.fSize));
+		if(player2Fields.setSchiffli == true) {
+			column = (int)((x-(myVar.rBorder))/(myVar.fSize));
+		}else {
+			column = (int)((x-(myVar.lBorder))/(myVar.fSize));
+		}
+		if ( (column < 10  && column+1 > 0) && 
+		   (row    < 10 && row+1 > 0)) {  //Klicken ist inerhalb des Spielfeldes
+		     if (player2Fields.setSchiffli == true) {
+			     player2Fields.tryToSetetShip(column, row);
+			 }else {
+				 player1Fields.tryToSetetShip(column, row);
+			 }
+			 }
 		//Button für den Gefächtstart überprüfen
-		if((player2Fields.isPlacingAShip() == false)&& myShape.checkHitboxButton(x,y,(float)(parent.width*0.45),(float)(parent.height*0.1))){
-			parent.background(0,0,0);
-			for (int r = 0; r <= 9; r++){
-				for (int c = 0;  c<=9;c++){
-			        player2Fields.felderArray[c][r].changeColorSetShip();
+			if((player2Fields.isPlacingAShip() == false)&& myShape.checkHitboxButton(x,y,(float)(parent.width*0.45),(float)(parent.height*0.1))){
+				parent.background(0,0,0);
+				for (int r = 0; r <= 9; r++){
+					for (int c = 0;  c<=9;c++){
+						player2Fields.felderArray[c][r].changeColorSetShip();
+						player2Fields.setSchiffli = false;
+						player1Fields.setSchiffli = true;
+					
 				}
 			}
-			player1Fields.setShipComputer();
 		}
 	}
-
-
-
 }

@@ -62,7 +62,7 @@ public class PlayField {
 		    int column = 0;
 		    
 		    // compute row and column from mouse position:
-		    if (setSchiffli == true){
+		    /*if (setSchiffli == true){
 		      column = (int)((x-(myVar.lBorder))/(myVar.fSize));
 		    } else {
 		      column = (int)((x-(myVar.rBorder))/(myVar.fSize));
@@ -115,13 +115,13 @@ public class PlayField {
 		      }
 		    }
 		  }
-		  /**
+		  /** Is not used now!!
 			  *  Computer tries to set a a ship component
 			  *   if first: set only on state 0
 			  *   else set only on state 1
 			  *   update water
 			  *   update environement
-			  */
+			  
 		  void setShipComputer(){
 			  while (platzierteSchiffli<6) {
 				  int column = ThreadLocalRandom.current().nextInt(0,9);
@@ -129,7 +129,7 @@ public class PlayField {
 				  tryToSetetShip(column, row);
 				  System.out.println("Next("+column+","+row+")");
 			  }
-		  }
+		  }*/
 		  
 		  
 		  
