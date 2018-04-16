@@ -28,19 +28,24 @@ public class GameControler {
 	}
 	//überprüfung des Buttons
 	void buttonClicked(){  
-		//player2Fields.mouseCheck();
 		float x = parent.mouseX;
 		float y = parent.mouseY;
-		int column;
-		int row;
-		row = (int)((y-(myVar.tBorder))/(myVar.fSize));
+		int column = 11;
+		int row = 11;
+		if(((y-(myVar.tBorder))/(myVar.fSize))>=0) {
+			row = (int)((y-(myVar.tBorder))/(myVar.fSize));
+		}
 		if(player2Fields.setSchiffli == true) {
-			column = (int)((x-(myVar.rBorder))/(myVar.fSize));
+			if(((x-(myVar.rBorder))/(myVar.fSize))>=0) {
+				column = (int)((x-(myVar.rBorder))/(myVar.fSize));
+			}
 		}else {
-			column = (int)((x-(myVar.lBorder))/(myVar.fSize));
+			if(((x-(myVar.lBorder))/(myVar.fSize))>=0) {
+				column = (int)((x-(myVar.lBorder))/(myVar.fSize));
+			}
 		}
 		if ( (column < 10  && column+1 > 0) && 
-		   (row    < 10 && row+1 > 0)) {  //Klicken ist inerhalb des Spielfeldes
+		   (row    < 10 && row+1 > 0)){			//Klicken ist inerhalb des Spielfeldes
 		     if (player2Fields.setSchiffli == true) {
 			     player2Fields.tryToSetetShip(column, row);
 			 }else {
