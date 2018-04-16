@@ -12,12 +12,14 @@ public class PlayField {
 		  
 		  int platzierteSchiffli = 0;
 		  boolean setSchiffli = false;
+		  boolean itsTurn = false;
 		  int line = 10;
 		  final int fWidth = 10;
 		  final int fHeight = 10;
 		  final int zustand = 4;
-		  final Feld[][] felderArray = new Feld[fWidth][fHeight];                                                //Felder-Array erstellen
-
+		  final Feld[][] felderArray = new Feld[fWidth][fHeight];
+		  
+		  //Felder-Array erstellen
 		  PlayField(PApplet p) {
 			parent = p;
 			myVar = new Variables(parent);
@@ -154,5 +156,9 @@ public class PlayField {
 		       if (felderArray[column+1][row-1].myZustand <= 1) felderArray[column+1][row-1].myZustand = 2; // wasser und setzen gesperrt
 		     if (row < 9 && column >0) 
 		       if (felderArray[column-1][row+1].myZustand <= 1) felderArray[column-1][row+1].myZustand = 2; // wasser und setzen gesperrt
-		  	}
+		  }
+		  
+		  void schiessen(int column, int row){
+			  felderArray[column][row].checkShooted();
+		  }
 }

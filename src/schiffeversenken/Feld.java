@@ -41,6 +41,15 @@ public class Feld {
 		if(myZustand == 3) {
 			myZustand = 4;
 		}
+		
+	}
+	void checkShooted() {
+		if(myZustand < 4) {
+			myZustand = 7;
+		}
+		if(myZustand == 4) {
+			myZustand = 5;
+		}
 	}
 
 }

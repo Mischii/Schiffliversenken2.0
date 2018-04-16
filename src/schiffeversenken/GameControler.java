@@ -35,11 +35,11 @@ public class GameControler {
 		if(((y-(myVar.tBorder))/(myVar.fSize))>=0) {
 			row = (int)((y-(myVar.tBorder))/(myVar.fSize));
 		}
-		if(player2Fields.setSchiffli == true) {
+		if(player2Fields.setSchiffli == true || player1Fields.itsTurn == true) {
 			if(((x-(myVar.rBorder))/(myVar.fSize))>=0) {
 				column = (int)((x-(myVar.rBorder))/(myVar.fSize));
 			}
-		}else {
+		}else if(player1Fields.setSchiffli == true || player2Fields.itsTurn == true){
 			if(((x-(myVar.lBorder))/(myVar.fSize))>=0) {
 				column = (int)((x-(myVar.lBorder))/(myVar.fSize));
 			}
@@ -51,7 +51,7 @@ public class GameControler {
 			 }else {
 				 player1Fields.tryToSetetShip(column, row);
 			 }
-			 }
+		}
 		//Button für den Gefächtstart überprüfen
 		if((player2Fields.isPlacingAShip() == false)&& myShape.checkHitboxButton(x,y,(float)(parent.width*0.45),(float)(parent.height*0.1))){
 			parent.background(0,0,0);
@@ -60,7 +60,6 @@ public class GameControler {
 					player2Fields.felderArray[c][r].changeColorSetShip();
 					player2Fields.setSchiffli = false;
 					player1Fields.setSchiffli = true;
-				
 				}
 			}
 		}
@@ -70,10 +69,24 @@ public class GameControler {
 				for (int c = 0;  c<=9;c++){
 					player1Fields.felderArray[c][r].changeColorSetShip();
 					player1Fields.setSchiffli = false;
-					player2Fields.setSchiffli = true;
+					player2Fields.itsTurn = true;
+				}
+			}
+		}
+		if(player1Fields.setSchiffli==false && player2Fields.setSchiffli==false) {
+			if ((column < 10  && column+1 > 0) && 
+					(row    < 10 && row+1 > 0)){			//Klicken ist inerhalb des Spielfeldes
+				if(player2Fields.itsTurn == true) {
+					player1Fields.schiessen(column, row);
+					player2Fields.itsTurn = false;
+					player1Fields.itsTurn = true;
+				}else {
+					player2Fields.schiessen(column, row);
+					player1Fields.itsTurn = false;
+					player2Fields.itsTurn = true;
+				}
 				
 			}
 		}
-	}
 	}
 }
