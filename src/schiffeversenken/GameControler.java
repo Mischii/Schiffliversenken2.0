@@ -26,7 +26,7 @@ public class GameControler {
 		bGround.show(player1Fields, player2Fields);
 		myShape.drawButton((float)(parent.width*0.45),(float)(parent.height*0.1),"Spiler wächsle!");
 	}
-	//überprüfung des Buttons!
+	//überprüfung des Buttons!!
 	void buttonClicked(){  
 		float x = parent.mouseX;
 		float y = parent.mouseY;
