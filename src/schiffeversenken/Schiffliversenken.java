@@ -10,7 +10,7 @@ public class Schiffliversenken extends PApplet{
 	GameControler myGame;
 
     Variables myVar;
-    int placeShips = 6;
+    int placeShips = 12;
 
     public void settings(){
 		size(1600,900);
@@ -26,30 +26,28 @@ public class Schiffliversenken extends PApplet{
     public void draw(){
 
     	if (!myGame.player2Fields.isPlacingAShip()) {
-    		if (placeShips > 2) {            
-               myGame.player2Fields.startSettingNextShip(3);
-               myGame.player2Fields.startSettingNextShip(3);
+    		if (placeShips > 8) {
+    			System.out.println(placeShips);
                myGame.player2Fields.startSettingNextShip(3);
                placeShips--;
             }
-    		else if(placeShips > 0) {
+    		else if(placeShips > 6) {
     			myGame.player2Fields.startSettingNextShip(2);
-                myGame.player2Fields.startSettingNextShip(2);
                 placeShips--;
     		}
           } 
     	if (!myGame.player1Fields.isPlacingAShip()) {
-    		if (placeShips > 5) {            
+    		if (placeShips > 6) {            
                myGame.player1Fields.startSettingNextShip(4);
                placeShips--;
             }
-    		else if(placeShips > 2) {
+    		else if(placeShips > 3) {
     			myGame.player1Fields.startSettingNextShip(3);
     			myGame.player1Fields.startSettingNextShip(3);
                 myGame.player1Fields.startSettingNextShip(3);
                 placeShips--;
     		}
-    		else if(placeShips > 0) {
+    		else if(placeShips > 1) {
     			myGame.player1Fields.startSettingNextShip(2);
                 myGame.player1Fields.startSettingNextShip(2);
                 placeShips--;
