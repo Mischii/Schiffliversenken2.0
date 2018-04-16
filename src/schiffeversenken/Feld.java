@@ -19,7 +19,7 @@ public class Feld {
 		break;
 		case(3): parent.fill(112,112,112);  //Ein Teil eines Schiffes
 		break;
-		case(4): parent.fill(255,255,255);  //Wasser das  besetzt ist, damit der Gegner die SChiffe nicht sieht
+		case(4): parent.fill(0,0,0);  //Wasser das  besetzt ist, damit der Gegner die SChiffe nicht sieht
 		break;
 		case(5): parent.fill(243, 187, 42); //Getroffen,nicht versenkt
 		break;
