@@ -24,7 +24,7 @@ public class GameControler {
 	//Zeigt zwei Spielfelder und zwei Button
 	void show() {
 		bGround.show(player1Fields, player2Fields);
-		myShape.drawButton((float)(parent.width*0.45),(float)(parent.height*0.1),"Spiler wächsle");
+		myShape.drawButton((float)(parent.width*0.45),(float)(parent.height*0.1),"Spiler wächsle!");
 	}
 	//überprüfung des Buttons
 	void buttonClicked(){  
