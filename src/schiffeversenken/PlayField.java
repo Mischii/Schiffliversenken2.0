@@ -60,7 +60,8 @@ public class PlayField {
 		    if (anzahlSchiffTeili > 0) {
 		      if (isFirstPart) {
 		          if (felderArray[column][row].myZustand == 0) {
-		             felderArray[column][row].myZustand = 3; // gesetzt
+		             felderArray[column][row].myZustand = 3;
+		             felderArray[column][row].setShipSize(schiffSize);// gesetzt
 		             isFirstPart = false;
 		             updateWaterCross(column,row);
 		             lockWaterAngles(column,row);
@@ -69,7 +70,8 @@ public class PlayField {
 		          }
 		      } else {
 		          if (felderArray[column][row].myZustand == 1) {
-		             felderArray[column][row].myZustand = 3; // gesetzt
+		             felderArray[column][row].myZustand = 3;
+		             felderArray[column][row].setShipSize(schiffSize); // gesetzt
 		             System.out.println("Next("+column+","+row+")");
 		             updateWaterCross(column,row);
 		             lockWaterCross(column,row);
@@ -110,14 +112,26 @@ public class PlayField {
 		  }
 		  
 		  void updateWaterCross(int column, int row) {
-		     if (row > 0) 
-		       if (felderArray[column][row-1].myZustand <= 1) felderArray[column][row-1].myZustand = 1; // wasser gesperrt, setzen erlaubt
-		     if (column > 0) 
-		       if (felderArray[column-1][row].myZustand <= 1) felderArray[column-1][row].myZustand = 1;
-		     if (row < 9) 
-		       if (felderArray[column][row+1].myZustand <= 1) felderArray[column][row+1].myZustand = 1;
-		     if (column < 9) 
-		       if (felderArray[column+1][row].myZustand <= 1) felderArray[column+1][row].myZustand = 1;
+		     if (row > 0) {
+		    	 if (felderArray[column][row-1].myZustand <= 1) {
+		    		 felderArray[column][row-1].myZustand = 1; // wasser gesperrt, setzen erlaubt 
+		    	 }
+		     }
+		     if (column > 0) {
+		    	 if (felderArray[column-1][row].myZustand <= 1) {
+		    		 felderArray[column-1][row].myZustand = 1;
+		    	 }
+		     }
+		     if (row < 9) {
+		    	 if (felderArray[column][row+1].myZustand <= 1) {
+		    		 felderArray[column][row+1].myZustand = 1;
+		    	 }
+		     }
+		     if (column < 9) {
+		    	 if (felderArray[column+1][row].myZustand <= 1) {
+		    		 felderArray[column+1][row].myZustand = 1;
+		    	 }
+		     }
 		  }
 
 		  void lockWaterCross(int column, int row) {

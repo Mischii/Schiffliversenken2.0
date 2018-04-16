@@ -8,6 +8,7 @@ public class Feld {
 
 
 	int myZustand = 0;
+	int myShipSize = 0;
 
 	void setColor () {
 		switch(myZustand){
@@ -19,7 +20,7 @@ public class Feld {
 		break;
 		case(3): parent.fill(112,112,112);  //Ein Teil eines Schiffes
 		break;
-		case(4): parent.fill(0,0,0);  //Wasser das  besetzt ist, damit der Gegner die SChiffe nicht sieht
+		case(4): parent.fill(255,255,255);  //Wasser das  besetzt ist, damit der Gegner die SChiffe nicht sieht
 		break;
 		case(5): parent.fill(243, 187, 42); //Getroffen,nicht versenkt
 		break;
@@ -32,6 +33,10 @@ public class Feld {
 
 	void setZustand (int newZ) {
 		myZustand = newZ;
+	}
+	
+	void setShipSize (int newS) {
+		myShipSize = newS;
 	}
 
 	void changeColorSetShip(){
@@ -49,6 +54,7 @@ public class Feld {
 		}
 		if(myZustand == 4) {
 			myZustand = 5;
+			
 		}
 	}
 
