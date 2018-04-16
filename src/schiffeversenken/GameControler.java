@@ -53,16 +53,27 @@ public class GameControler {
 			 }
 			 }
 		//Button für den Gefächtstart überprüfen
-			if((player2Fields.isPlacingAShip() == false)&& myShape.checkHitboxButton(x,y,(float)(parent.width*0.45),(float)(parent.height*0.1))){
-				parent.background(0,0,0);
-				for (int r = 0; r <= 9; r++){
-					for (int c = 0;  c<=9;c++){
-						player2Fields.felderArray[c][r].changeColorSetShip();
-						player2Fields.setSchiffli = false;
-						player1Fields.setSchiffli = true;
-					
+		if((player2Fields.isPlacingAShip() == false)&& myShape.checkHitboxButton(x,y,(float)(parent.width*0.45),(float)(parent.height*0.1))){
+			parent.background(0,0,0);
+			for (int r = 0; r <= 9; r++){
+				for (int c = 0;  c<=9;c++){
+					player2Fields.felderArray[c][r].changeColorSetShip();
+					player2Fields.setSchiffli = false;
+					player1Fields.setSchiffli = true;
+				
 				}
 			}
 		}
+		if((player1Fields.isPlacingAShip() == false)&& myShape.checkHitboxButton(x,y,(float)(parent.width*0.45),(float)(parent.height*0.1))){
+			parent.background(200,200,200);
+			for (int r = 0; r <= 9; r++){
+				for (int c = 0;  c<=9;c++){
+					player1Fields.felderArray[c][r].changeColorSetShip();
+					player1Fields.setSchiffli = false;
+					player2Fields.setSchiffli = true;
+				
+			}
+		}
+	}
 	}
 }
