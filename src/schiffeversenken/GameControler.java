@@ -73,6 +73,7 @@ public class GameControler {
 				}
 			}
 		}
+		//Wechselt zwischen den Spielern bei Jedem Schuss ab
 		if(player1Fields.setSchiffli==false && player2Fields.setSchiffli==false) {
 			if ((column < 10  && column+1 > 0) && 
 					(row    < 10 && row+1 > 0)){			//Klicken ist inerhalb des Spielfeldes
@@ -80,10 +81,12 @@ public class GameControler {
 					player1Fields.schiessen(column, row);
 					player2Fields.itsTurn = false;
 					player1Fields.itsTurn = true;
+					myShape.showPlayer(x, y,"Spiler zwöi");
 				}else {
 					player2Fields.schiessen(column, row);
 					player1Fields.itsTurn = false;
 					player2Fields.itsTurn = true;
+					myShape.showPlayer(x, y,"Spiler eis");
 				}
 				
 			}
