@@ -55,42 +55,6 @@ public class PlayField {
 		    return false; 
 		  }
 		  
-		  void mouseCheck() {  //Maus abfragen
-		    int x = parent.mouseX;
-		    int y = parent.mouseY;
-		    int row = 0;
-		    int column = 0;
-		    
-		    // compute row and column from mouse position:
-		    /*if (setSchiffli == true){
-		      column = (int)((x-(myVar.lBorder))/(myVar.fSize));
-		    } else {
-		      column = (int)((x-(myVar.rBorder))/(myVar.fSize));
-		    }
-		    row = (int)((y-(myVar.tBorder))/(myVar.fSize));
-		    
-		    if ( (column < fWidth  && column+1 > 0) && 
-		         (row    < fHeight && row+1 > 0)    &&
-		         (x>= myVar.rBorder && y>= myVar.tBorder)) {  //Klicken ist inerhalb des Spielfeldes
-		         
-		      tryToSetetShip(column, row);
-		      
-		    } /*else {    
-		      // Klicken auserhalb des Spielfeldes -> Fehleranzeige
-		    	parent.fill(0000000);
-		    	parent.textSize(50);
-		    	parent.textAlign(parent.CENTER);
-		    	parent.text("Hallllt STOP!!!",parent.width/2,parent.height/12);
-		    }*/
-		  }
-		  
-		  /**
-		  *  Tries to set a a ship component
-		  *   if first: set only on state 0
-		  *   else set only on state 1
-		  *   update water
-		  *   update environement
-		  */
 		  void tryToSetetShip(int column, int row) {
 		    if (anzahlSchiffTeili > 0) {
 		      if (isFirstPart) {
@@ -115,27 +79,7 @@ public class PlayField {
 		      }
 		    }
 		  }
-		  /** Is not used now!!
-			  *  Computer tries to set a a ship component
-			  *   if first: set only on state 0
-			  *   else set only on state 1
-			  *   update water
-			  *   update environement
-			  
-		  void setShipComputer(){
-			  while (platzierteSchiffli<6) {
-				  int column = ThreadLocalRandom.current().nextInt(0,9);
-				  int row = ThreadLocalRandom.current().nextInt(0,9);
-				  tryToSetetShip(column, row);
-				  System.out.println("Next("+column+","+row+")");
-			  }
-		  }*/
 		  
-		  
-		  
-		  
-		  
-
 		  void lockLastWaterCrossPart (int column, int row) {
 		     if (row > 0) 
 		       if (felderArray[column][row-1].myZustand <= 1) {
