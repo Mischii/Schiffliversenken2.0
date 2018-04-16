@@ -81,12 +81,10 @@ public class GameControler {
 					player1Fields.schiessen(column, row);
 					player2Fields.itsTurn = false;
 					player1Fields.itsTurn = true;
-					myShape.showPlayer(x, y,"Spiler zwöi");
 				}else {
 					player2Fields.schiessen(column, row);
 					player1Fields.itsTurn = false;
 					player2Fields.itsTurn = true;
-					myShape.showPlayer(x, y,"Spiler eis");
 				}
 				
 			}
