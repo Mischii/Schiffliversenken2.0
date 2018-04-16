@@ -21,6 +21,12 @@ public class Feld {
 		break;
 		case(4): parent.fill(255,255,255);  //Wasser das  besetzt ist, damit der Gegner die SChiffe nicht sieht
 		break;
+		case(5): parent.fill(243, 187, 42); //Getroffen,nicht versenkt
+		break;
+		case(6): parent.fill(255,0,0); //Versenkt
+		break;
+		case(7): parent.fill(0,0,0); 	//nicht getroffen
+		break;
 		}
 	}
 
