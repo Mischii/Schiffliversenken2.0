@@ -58,8 +58,6 @@ public class Schiffliversenken extends PApplet{
     }
 
     public void mousePressed(){
-        
-    	//myPlayF.mouseCheck();
         myGame.buttonClicked();
       }
     
