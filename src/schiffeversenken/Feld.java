@@ -6,17 +6,16 @@ public class Feld {
 	Feld(PApplet p) {
 		parent = p;}
 
-
 	int myZustand = 0;
 	int myShipSize = 0;
-
+	
 	void setColor () {
 		switch(myZustand){
-		case(0): parent.fill(30,125,230);  //Wasser das noch nicht besetzt ist
+		case(0): parent.fill(30,125,230);	//Wasser das noch nicht besetzt ist
 		break;
-		case(1): parent.fill(0,0,255);  //Moeglichkeiten fuer das naechste Feld des Schiffes
+		case(1): parent.fill(0,0,255);  	//Moeglichkeiten fuer das naechste Feld des Schiffes
 		break;
-		case(2): parent.fill(255,0,0);  //Wasser das neben einem Schiff liegt
+		case(2): parent.fill(255,0,0);  	//Wasser das neben einem Schiff liegt
 		break;
 		case(3): parent.fill(112,112,112);  //Ein Teil eines Schiffes
 		break;
@@ -24,9 +23,9 @@ public class Feld {
 		break;
 		case(5): parent.fill(243, 187, 42); //Getroffen,nicht versenkt
 		break;
-		case(6): parent.fill(255,0,0); //Versenkt
+		case(6): parent.fill(255,0,0); 		//Versenkt
 		break;
-		case(7): parent.fill(0,0,0); 	//nicht getroffen
+		case(7): parent.fill(0,0,0); 		//nicht getroffen
 		break;
 		}
 	}
@@ -46,16 +45,16 @@ public class Feld {
 		if(myZustand == 3) {
 			myZustand = 4;
 		}
-		
 	}
+	
 	void checkShooted() {
+		//nicht getroffen
 		if(myZustand < 4) {
 			myZustand = 7;
 		}
+		//Getroffen
 		if(myZustand == 4) {
 			myZustand = 5;
-			
 		}
 	}
-
 }

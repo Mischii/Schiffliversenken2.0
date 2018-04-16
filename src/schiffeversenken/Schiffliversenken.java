@@ -21,6 +21,7 @@ public class Schiffliversenken extends PApplet{
     public void setup(){
         myGame = new GameControler(this);
         myGame.player2Fields.startSettingNextShip(4);
+        myGame.player2Fields.setetShip();
     }
 
     public void draw(){
@@ -33,25 +34,28 @@ public class Schiffliversenken extends PApplet{
             }
     		else if(placeShips > 6) {
     			myGame.player2Fields.startSettingNextShip(2);
+    	        myGame.player2Fields.setetShip();
                 placeShips--;
     		}
+    		myGame.player2Fields.setetShip();
           } 
     	if (!myGame.player1Fields.isPlacingAShip()) {
     		if (placeShips > 6) {            
                myGame.player1Fields.startSettingNextShip(4);
+               myGame.player2Fields.setetShip();
                placeShips--;
             }
     		else if(placeShips > 3) {
     			myGame.player1Fields.startSettingNextShip(3);
-    			myGame.player1Fields.startSettingNextShip(3);
-                myGame.player1Fields.startSettingNextShip(3);
+    	        myGame.player2Fields.setetShip();
                 placeShips--;
     		}
     		else if(placeShips > 1) {
     			myGame.player1Fields.startSettingNextShip(2);
-                myGame.player1Fields.startSettingNextShip(2);
+    	        myGame.player2Fields.setetShip();
                 placeShips--;
     		}
+    		myGame.player2Fields.setetShip();
           }
           myVar = new Variables(this);
           myGame.show();
