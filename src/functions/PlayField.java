@@ -17,7 +17,7 @@ public class PlayField {
 	int shipID = 1;
 		
 	//Felder-Array erstellen
-	public PlayField(int width, int height) {
+	public PlayField() {
 		for (int i = 0; i < fWidth; i++) {
 			for (int j = 0; j < fHeight; j++) {
 				felderArray[i][j] = new Feld ();

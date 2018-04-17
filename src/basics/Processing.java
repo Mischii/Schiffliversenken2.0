@@ -22,4 +22,19 @@ public class Processing {
 		parent.text(textButton,(float)(x+(parent.width*0.1/2)),(float)(parent.height*0.15));
 	}
 
+    public void setBackgroundDark() {
+		parent.background(0,0,0);
+    }
+    
+    public void setBackgroundLight() {
+		parent.background(200,200,200);
+    }
+    
+    public int getMouseX() {
+    	return parent.mouseX;
+    }
+
+    public int getMouseY() {
+    	return parent.mouseY;
+    }
 }

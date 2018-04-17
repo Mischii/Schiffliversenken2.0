@@ -8,18 +8,16 @@ import processing.core.PApplet;
 public class FieldView extends Processing {
 	
 	ColorSetter myColorSetter;
-	Variables myVar;
 	PlayField myPlayField;
 
 	public FieldView(PApplet p, PlayField pf) {
 		super(p);
 		myColorSetter = new ColorSetter(p);
-		myVar = new Variables(p.width,p.height);
 		myPlayField = pf;
 	}
 
 
-	public void drawFields(boolean isRight) {      // Felder zeichnen
+	public void drawFields(boolean isRight, Variables myVar) {      // Felder zeichnen
 		float pos = (float)myVar.lBorder;
 		if (isRight == true) pos = (float)myVar.rBorder;
 		float iPos = (float) myVar.tBorder;

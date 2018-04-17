@@ -1,44 +1,63 @@
 package schiffeversenken;
-import basics.Processing;
 import functions.PlayField;
 import functions.Variables;
-import processing.core.PApplet;
-import view.Background;
-import view.FieldView;
-import view.Shape;
 
-public class GameControler extends Processing {
+public class GameControler {
 
-	Shape myShape;
-	Background bGround;
-	Variables myVar;
-	public PlayField player1Fields;
-	public PlayField player2Fields;
-
-	public FieldView myFieldViewPlayer1;
-	public FieldView myFieldViewPlayer2;
+	private PlayField player1Fields;
+	private PlayField player2Fields;
+	int myWidth;
+	int myHeight;
 	
-	public GameControler(PApplet p) {
-		super (p);
-		myShape = new Shape(p);
-		bGround = new Background(p);
-		myVar = new Variables(p.width,p.height);
-		player1Fields = new PlayField(p.width,p.height);
-		player2Fields = new PlayField(p.width,p.height);
+	int placeShips = 12;
+
+	public GameControler(int width, int height) {
+		myWidth = width;
+		myHeight = height;
+		player1Fields = new PlayField();
+		player2Fields = new PlayField();
 		player2Fields.setSchiffli = true;
-		myFieldViewPlayer1 = new FieldView(p, player1Fields);
-		myFieldViewPlayer2 = new FieldView(p, player2Fields);
+        player2Fields.startSettingNextShip(4);
+        player2Fields.setetShip();
+	}
+	
+	public PlayField getPlayerFields(int player) {
+		if (player == 1) return player1Fields;
+		return player2Fields;
 	}
 
-	//Zeigt zwei Spielfelder und zwei Button
-	public void show() {
-		bGround.show(myFieldViewPlayer1, myFieldViewPlayer2);
-		myShape.drawButton((float)(parent.width*0.45),(float)(parent.height*0.1),"Spiler wächsle!");
-	}
+	public void draw(){
+    	if (!player2Fields.isPlacingAShip()) {
+    		if (placeShips > 8) {
+    			System.out.println(placeShips);
+    			player2Fields.startSettingNextShip(3);
+               placeShips--;
+            }
+    		else if(placeShips > 6) {
+    			player2Fields.startSettingNextShip(2);
+                placeShips--;
+    		}
+    		player2Fields.setetShip();
+          } 
+    	if (!player1Fields.isPlacingAShip()) {
+    		if (placeShips > 6) {            
+    			player1Fields.startSettingNextShip(4);
+               placeShips--;
+            }
+    		else if(placeShips > 3) {
+    			player1Fields.startSettingNextShip(3);
+                placeShips--;
+    		}
+    		else if(placeShips > 1) {
+    			player1Fields.startSettingNextShip(2);
+                placeShips--;
+    		}
+    		player2Fields.setetShip();
+          }
+    }
+	
 	//überprüfung des Buttons!!!
-	public void buttonClicked(){  
-		float x = parent.mouseX;
-		float y = parent.mouseY;
+	public void buttonClicked(float x, float y, Variables myVar, GameView myGameView){  
 		int column = 11;
 		int row = 11;
 		if(((y-(myVar.tBorder))/(myVar.fSize))>=0) {
@@ -62,8 +81,9 @@ public class GameControler extends Processing {
 			 }
 		}
 		//Button für den Gefächtstart überprüfen
-		if((player2Fields.isPlacingAShip() == false)&& myShape.checkHitboxButton(x,y,(float)(parent.width*0.45),(float)(parent.height*0.1))){
-			parent.background(0,0,0);
+		if( (player2Fields.isPlacingAShip() == false) && 
+		    myGameView.getShape().checkHitboxButton(x,y,(float)(myWidth*0.45),(float)(myHeight*0.1))) {
+			myGameView.setBackgroundDark();
 			for (int r = 0; r <= 9; r++){
 				for (int c = 0;  c<=9;c++){
 					player2Fields.getFeld(c,r).changeColorSetShip();
@@ -72,8 +92,9 @@ public class GameControler extends Processing {
 				}
 			}
 		}
-		if((player1Fields.isPlacingAShip() == false)&& myShape.checkHitboxButton(x,y,(float)(parent.width*0.45),(float)(parent.height*0.1))){
-			parent.background(200,200,200);
+		if( (player1Fields.isPlacingAShip() == false) && 
+			myGameView.getShape().checkHitboxButton(x,y,(float)(myWidth*0.45),(float)(myHeight*0.1))) {
+			myGameView.setBackgroundLight();
 			for (int r = 0; r <= 9; r++){
 				for (int c = 0;  c<=9;c++){
 					player1Fields.getFeld(c,r).changeColorSetShip();
