@@ -8,6 +8,7 @@ public class Feld {
 
 	int myZustand = 0;
 	int myShipSize = 0;
+	int myShipID = 0;
 	
 	void setColor () {
 		switch(myZustand){
@@ -44,6 +45,9 @@ public class Feld {
 		}
 		if(myZustand == 3) {
 			myZustand = 4;
+		}
+		if(myZustand == 0) {
+			myShipID = 0;
 		}
 	}
 	

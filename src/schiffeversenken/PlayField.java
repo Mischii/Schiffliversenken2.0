@@ -17,9 +17,7 @@ public class PlayField {
 	final int fHeight = 10;
 	final int zustand = 4;
 	final Feld[][] felderArray = new Feld[fWidth][fHeight];
-	int destroyed4Er = 0;
-	int destroyed3Er = 0;
-	int destroyed2Er = 0;
+	int shipID = 1;
 		  
 	//Felder-Array erstellen
 	PlayField(PApplet p) {
@@ -64,7 +62,8 @@ public class PlayField {
 			if (isFirstPart) {
 				if (felderArray[column][row].myZustand == 0) {
 					felderArray[column][row].myZustand = 3;
-		            felderArray[column][row].setShipSize(schiffSize);// gesetzt
+		            felderArray[column][row].setShipSize(schiffSize);
+		            felderArray[column][row].myShipID = shipID;// gesetzt
 		            isFirstPart = false;
 		            updateWaterCross(column,row);
 		            lockWaterAngles(column,row);
@@ -74,14 +73,18 @@ public class PlayField {
 			}else{
 				if (felderArray[column][row].myZustand == 1) {
 					felderArray[column][row].myZustand = 3;
-		            felderArray[column][row].setShipSize(schiffSize); // gesetzt
+		            felderArray[column][row].setShipSize(schiffSize);
+		            felderArray[column][row].myShipID = shipID;// gesetzt
 		            System.out.println("Next("+column+","+row+")");
 		            updateWaterCross(column,row);
 		            lockWaterCross(column,row);
 		            lockWaterAngles(column,row);
 		            anzahlSchiffTeili--;
-		            if (anzahlSchiffTeili < 1) lockLastWaterCrossPart(column,row);
-		          }
+		            if (anzahlSchiffTeili < 1) {
+		            	lockLastWaterCrossPart(column,row);
+		            	shipID++;
+					}
+		        }
 			}
 		}
 	}
@@ -111,6 +114,7 @@ public class PlayField {
 		    		if (column-schiffSize >= 0 )
 		    			felderArray[column-schiffSize][row].myZustand = 2; // wasser gegenüber setzen gesperrt
 		    	}
+		    
 		    resetSettings();
 		  }
 		  
@@ -184,30 +188,26 @@ public class PlayField {
 	}
 		  
 	void schiessen(int column, int row){
+		int destroyed = 0;
 		felderArray[column][row].checkShooted();
-		if(felderArray[column][row].myShipSize == 4) {
-			destroyed4Er ++;
-			if(destroyed4Er == 4) {
-				toDestroy(4);
+		for (int i = 0; i < fWidth; i++) {
+			for (int j = 0; j < fHeight; j++) {
+				if((felderArray[i][j].myShipID == felderArray[column][row].myShipID) && (felderArray[i][j].myZustand == 5)) {
+					destroyed +=1;
+				}
 			}
 		}
-		if(felderArray[column][row].myShipSize == 3) {
-			destroyed3Er ++;
-			if(destroyed3Er == 3) {
-				toDestroy(3);
-			}
-		}
-		if(felderArray[column][row].myShipSize == 2) {
-			destroyed2Er ++;
-			if(destroyed2Er == 2) {
-				toDestroy(2);
+		if(destroyed == felderArray[column][row].myShipSize) {
+			if(felderArray[column][row].myShipID != 0) {
+				toDestroy(felderArray[column][row].myShipID);
 			}
 		}
 	}
-	void toDestroy(int size) {
+	
+	void toDestroy(int id) {
 		for (int i = 0; i < fWidth; i++) {
 			for (int j = 0; j < fHeight; j++) {
-				if(felderArray[i][j].myShipSize == size) {
+				if(felderArray[i][j].myShipID == id) {
 					felderArray[i][j].setZustand(6);
 				}
 			}
