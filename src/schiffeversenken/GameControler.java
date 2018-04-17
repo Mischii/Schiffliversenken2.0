@@ -86,13 +86,17 @@ public class GameControler extends Processing {
 		if(player1Fields.setSchiffli==false && player2Fields.setSchiffli==false) {
 			if ((column < 10  && column+1 > 0) && (row    < 10 && row+1 > 0)){			//Klicken ist inerhalb des Spielfeldes
 				if(player2Fields.itsTurn == true) {
-					player1Fields.schiessen(column, row);
-					player2Fields.itsTurn = false;
-					player1Fields.itsTurn = true;
+					if((player1Fields.getFeld(column, row).myZustand == 0)||(player1Fields.getFeld(column, row).myZustand == 4)) {
+						player1Fields.schiessen(column, row);
+						player2Fields.itsTurn = false;
+						player1Fields.itsTurn = true;
+					}
 				}else {
-					player2Fields.schiessen(column, row);
-					player1Fields.itsTurn = false;
-					player2Fields.itsTurn = true;
+					if((player2Fields.getFeld(column, row).myZustand == 0)||(player2Fields.getFeld(column, row).myZustand == 4)) {
+						player2Fields.schiessen(column, row);
+						player1Fields.itsTurn = false;
+						player2Fields.itsTurn = true;
+					}
 				}
 			}
 		}
