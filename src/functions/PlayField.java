@@ -1,47 +1,35 @@
-package schiffeversenken;
-import processing.core.PApplet;
+package functions;
 
 public class PlayField {
-	PApplet parent;
-	Variables myVar;
 	
 	int anzahlSchiffTeili = 0; // actual ship component
 	int schiffSize = 0; // actual ship component
 	boolean isFirstPart=false;
-		  
+		 
 	int platzierteSchiffli = 0;
-	boolean setSchiffli = false;
-	boolean itsTurn = false;
+	public boolean setSchiffli = false;
+	public boolean itsTurn = false;
 	int line = 10;
 	final int fWidth = 10;
 	final int fHeight = 10;
 	final int zustand = 4;
-	final Feld[][] felderArray = new Feld[fWidth][fHeight];
+	private final Feld[][] felderArray = new Feld[fWidth][fHeight];
 	int shipID = 1;
-		  
+		
 	//Felder-Array erstellen
-	PlayField(PApplet p) {
-		parent = p;
-		myVar = new Variables(parent);
+	public PlayField(int width, int height) {
 		for (int i = 0; i < fWidth; i++) {
 			for (int j = 0; j < fHeight; j++) {
-				felderArray[i][j] = new Feld (parent);
+				felderArray[i][j] = new Feld ();
 			}
 		}
 	}
-		  
-	void drawFields(float pos) {      //Felder zeichnen
-		float iPos = (float) myVar.tBorder;
-		for (int r = 0; iPos<=myVar.tBorder+parent.width*0.36; iPos+=myVar.fSize, r++){
-			float jPos = pos;
-			for (int c = 0;  jPos<=pos+parent.width*0.36;jPos+=myVar.fSize, c++){
-				felderArray[c][r].setColor();
-				parent.rect(jPos,iPos,(float)(myVar.fSize),(float)(myVar.fSize));
-			}
-		}
+		
+	public Feld getFeld(int i, int j) {
+	   return felderArray[i][j];
 	}
-		  
-	void startSettingNextShip (int maxSize) {
+	
+	public void startSettingNextShip (int maxSize) {
 		anzahlSchiffTeili = maxSize; // actual ship component
 		isFirstPart = true;
 		schiffSize = maxSize; 
@@ -52,18 +40,19 @@ public class PlayField {
 		schiffSize = 0; 
 	}
 		  
-	boolean isPlacingAShip () {
+	public boolean isPlacingAShip () {
 		if (anzahlSchiffTeili > 0) return true; // actual ship component
 			return false; 
 	}
 		  
-	void tryToSetetShip(int column, int row) {
+	public void tryToSetetShip(int column, int row) {
+		Feld f = felderArray[column][row];
 		if (anzahlSchiffTeili > 0) {
 			if (isFirstPart) {
-				if (felderArray[column][row].myZustand == 0) {
-					felderArray[column][row].myZustand = 3;
-		            felderArray[column][row].setShipSize(schiffSize);
-		            felderArray[column][row].myShipID = shipID;// gesetzt
+				if (f.myZustand == 0) {
+					f.myZustand = 3;
+		            f.setShipSize(schiffSize);
+		            f.myShipID = shipID;// gesetzt
 		            isFirstPart = false;
 		            updateWaterCross(column,row);
 		            lockWaterAngles(column,row);
@@ -71,10 +60,10 @@ public class PlayField {
 		            anzahlSchiffTeili--;
 				}
 			}else{
-				if (felderArray[column][row].myZustand == 1) {
-					felderArray[column][row].myZustand = 3;
-		            felderArray[column][row].setShipSize(schiffSize);
-		            felderArray[column][row].myShipID = shipID;// gesetzt
+				if (f.myZustand == 1) {
+					f.myZustand = 3;
+		            f.setShipSize(schiffSize);
+		            f.myShipID = shipID;// gesetzt
 		            System.out.println("Next("+column+","+row+")");
 		            updateWaterCross(column,row);
 		            lockWaterCross(column,row);
@@ -165,7 +154,7 @@ public class PlayField {
 		if (column < 9) 
 			if (felderArray[column+1][row].myZustand <= 1) if (row != aRow && column+1 != aCol) felderArray[column+1][row].myZustand = 2;
 		}
-	void setetShip() {
+	public void setetShip() {
 		for (int i = 0; i < fWidth; i++) {
 			for (int j = 0; j < fHeight; j++) {
 				if(felderArray[i][j].myZustand == 1) {
@@ -187,7 +176,7 @@ public class PlayField {
 			if (felderArray[column-1][row+1].myZustand <= 1) felderArray[column-1][row+1].myZustand = 2; // wasser und setzen gesperrt
 	}
 		  
-	void schiessen(int column, int row){
+	public void schiessen(int column, int row){
 		int destroyed = 0;
 		felderArray[column][row].checkShooted();
 		for (int i = 0; i < fWidth; i++) {

@@ -9,7 +9,6 @@ public class Schiffliversenken extends PApplet{
 
 	GameControler myGame;
 
-    Variables myVar;
     int placeShips = 12;
 
     public void settings(){
@@ -53,7 +52,6 @@ public class Schiffliversenken extends PApplet{
     		}
     		myGame.player2Fields.setetShip();
           }
-          myVar = new Variables(this);
           myGame.show();
     }
 
