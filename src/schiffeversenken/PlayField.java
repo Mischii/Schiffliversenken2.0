@@ -193,7 +193,7 @@ public class PlayField {
 		for (int i = 0; i < fWidth; i++) {
 			for (int j = 0; j < fHeight; j++) {
 				if((felderArray[i][j].myShipID == felderArray[column][row].myShipID) && (felderArray[i][j].myZustand == 5)) {
-					destroyed +=1;
+					destroyed ++;
 				}
 			}
 		}
