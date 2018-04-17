@@ -1,12 +1,9 @@
-package schiffeversenken;
+package view;
 
 import basics.Processing;
 import functions.PlayField;
 import functions.Variables;
 import processing.core.PApplet;
-import view.Background;
-import view.FieldView;
-import view.Shape;
 
 public class GameView extends Processing {
 	

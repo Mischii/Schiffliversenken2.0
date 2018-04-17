@@ -1,6 +1,5 @@
-package schiffeversenken;
-import functions.PlayField;
-import functions.Variables;
+package functions;
+import view.GameView;
 
 public class GameControler {
 

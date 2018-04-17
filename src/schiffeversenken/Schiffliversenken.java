@@ -4,7 +4,7 @@ import processing.core.PApplet;
 public class Schiffliversenken {
 
 	public static void main(String[] args) {
-		PApplet.main("schiffeversenken.Game");
+		PApplet.main("functions.Game");
 	}
 
 }

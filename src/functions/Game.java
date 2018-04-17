@@ -1,7 +1,7 @@
-package schiffeversenken;
+package functions;
 
-import functions.Variables;
 import processing.core.PApplet;
+import view.GameView;
 
 public class Game extends PApplet {
 
