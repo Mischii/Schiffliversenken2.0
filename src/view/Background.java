@@ -1,3 +1,11 @@
+/**
+ * show the game view
+ * 
+ * @author	Lenny Johner, Michèle Habegger
+ * @version	1.0
+ * @since	19.03.2018
+*/
+
 package view;
 import basics.Processing;
 import functions.Variables;
@@ -9,6 +17,12 @@ public class Background extends Processing {
 	    super(p);
 	}
 	
+	/**
+	 * show both playfilds 
+	 * @param f1
+	 * @param f2
+	 * @param myVar
+	 */
 	public void show(FieldView f1, FieldView f2, Variables myVar) {
 		
 		selectColor(30,125,230);
@@ -21,3 +35,4 @@ public class Background extends Processing {
 
 	}
 }
+

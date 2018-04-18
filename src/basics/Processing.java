@@ -1,3 +1,11 @@
+/**
+* extends Processing  
+* 
+* @author	Lenny Johner, Michèle Habegger
+* @version	1.0
+* @since	17.04.2018
+*/
+
 package basics;
 
 import processing.core.PApplet;
@@ -15,7 +23,10 @@ public class Processing {
 		parent.fill(r,g,b);
 	}
 	
-	protected void showPlayer(float x, float y, String textButton){
+	/**
+	 * text output for button or players
+	 */
+	protected void writeText(float x, float y, String textButton){
 		parent.fill(255,255,255);
 		parent.textAlign(PConstants.CENTER);
 		parent.textSize(15);

@@ -1,3 +1,11 @@
+/**
+ * controls the color state
+ * 
+ * @author	Lenny Johner, Michèle Habegger
+ * @version	1.0
+ * @since	17.04.2018
+ */
+
 package view;
 
 import basics.Processing;
@@ -10,6 +18,10 @@ public class ColorSetter extends Processing {
 		super(p);
 	}
 
+	/**
+	 * create the different states
+	 * @param zustand
+	 */
 	public void updateColor (int zustand) {
 		switch(zustand){
 			case(0): selectColor(30,125,230);	//Wasser das noch nicht besetzt ist

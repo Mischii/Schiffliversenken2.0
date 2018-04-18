@@ -1,3 +1,12 @@
+/**
+ * managing the two players 
+ * change after a action the player
+ * 
+ * @author	Lenny Johner, Michèle Habegger
+ * @version	1.0
+ * @since	19.03.2018
+ */
+
 package functions;
 import view.GameView;
 
@@ -10,6 +19,11 @@ public class GameControler {
 	
 	int placeShips = 12;
 
+	/**
+	 * initialize both player
+	 * @param width
+	 * @param height
+	 */
 	public GameControler(int width, int height) {
 		myWidth = width;
 		myHeight = height;
@@ -25,6 +39,9 @@ public class GameControler {
 		return player2Fields;
 	}
 
+	/**
+	 * create the ships for both player
+	 */
 	public void draw(){
     	if (!player2Fields.isPlacingAShip()) {
     		if (placeShips > 8) {
@@ -55,7 +72,13 @@ public class GameControler {
           }
     }
 	
-	//überprüfung des Buttons!!!
+	/**
+	 * check button
+	 * @param x
+	 * @param y
+	 * @param myVar
+	 * @param myGameView
+	 */
 	public void buttonClicked(float x, float y, Variables myVar, GameView myGameView){  
 		int column = 11;
 		int row = 11;
@@ -79,7 +102,9 @@ public class GameControler {
 				 player1Fields.tryToSetetShip(column, row);
 			 }
 		}
-		//Button für den Gefächtstart überprüfen
+		/**
+		 * set ships for both player
+		 */
 		if( (player2Fields.isPlacingAShip() == false) && 
 		    myGameView.getShape().checkHitboxButton(x,y,(float)(myWidth*0.45),(float)(myHeight*0.1))) {
 			myGameView.setBackgroundDark();
@@ -102,7 +127,9 @@ public class GameControler {
 				}
 			}
 		}
-		//Wechselt zwischen den Spielern bei Jedem Schuss ab
+		/**
+		 * change between both player
+		 */
 		if(player1Fields.setSchiffli==false && player2Fields.setSchiffli==false) {
 			if ((column < 10  && column+1 > 0) && (row    < 10 && row+1 > 0)){			//Klicken ist inerhalb des Spielfeldes
 				if(player2Fields.itsTurn == true) {

@@ -1,3 +1,11 @@
+/**
+* checks his own state
+* 
+* @author	Lenny Johner, Michèle Habegger
+* @version	1.0
+* @since	19.03.2018
+*/
+
 package functions;
 
 public class Feld {
@@ -10,14 +18,25 @@ public class Feld {
 		return myZustand;
 	}
 	
+	/**
+	 * change his own state 
+	 * @param newZ
+	 */
 	public void setZustand (int newZ) {
 		myZustand = newZ;
 	}
 	
+	/**
+	 * change his own length
+	 * @param newS
+	 */
 	public void setShipSize (int newS) {
 		myShipSize = newS;
 	}
-
+	
+	/**
+	 * checks if ship or empty
+	 */
 	public void changeColorSetShip(){
 		if(myZustand == 2 || myZustand == 1) {
 			myZustand = 0;
@@ -30,6 +49,9 @@ public class Feld {
 		}
 	}
 	
+	/**
+	 * check if destroyed
+	 */
 	public void checkShooted() {
 		//nicht getroffen
 		if(myZustand < 4) {

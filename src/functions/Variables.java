@@ -1,3 +1,11 @@
+/**
+ * collection of variables
+ * 
+ * @author	Lenny Johner, Michèle Habegger
+ * @version	1.0
+ * @since	13.04.2018
+ */
+
 package functions;
 
 public class Variables {

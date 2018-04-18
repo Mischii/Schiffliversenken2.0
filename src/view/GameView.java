@@ -1,3 +1,11 @@
+/**
+ * control the hole game interface
+ * 
+ * @author	Lenny Johner, Michèle Habegger
+ * @version	1.0
+ * @since	17.04.2018
+ */
+
 package view;
 
 import basics.Processing;
@@ -21,7 +29,10 @@ public class GameView extends Processing {
 		myFieldViewPlayer1 = new FieldView(p, pf1);
 		myFieldViewPlayer2 = new FieldView(p, pf2);
 	}
-
+	/**
+	 * show the playfields and button
+	 * @param myVar
+	 */
 	public void show(Variables myVar) {
 		bGround.show(myFieldViewPlayer1, myFieldViewPlayer2, myVar);
 		myShape.drawButton((float)(parent.width*0.45),(float)(parent.height*0.1),"Spiler wächsle!");

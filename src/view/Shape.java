@@ -1,3 +1,11 @@
+/**
+ * control button
+ * 
+ * @author	Lenny Johner, Michèle Habegger
+ * @version	1.0
+ * @since	19.03.2018
+ */
+
 package view;
 import basics.Processing;
 import processing.core.PApplet;
@@ -8,10 +16,13 @@ public class Shape extends Processing {
 		super(p);
 	}
 	
+	/**
+	 * button template 
+	 */
 	public void drawButton(float x, float y, String textButton){
 		parent.fill(80,5,5);
 		parent.rect(x,y,parent.width*0.1f,parent.height*0.1f);
-		showPlayer (x, y, textButton);
+		writeText (x, y, textButton);
 	}
 	
 	public boolean checkHitboxButton(float xMouse,float yMouse,float xButton,float yButton){

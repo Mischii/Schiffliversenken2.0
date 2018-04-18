@@ -1,3 +1,12 @@
+/**
+ * main class 
+ * start point of the game
+ * 
+ * @author	Lenny Johner, Michèle Habegger
+ * @version	1.0
+ * @since	19.03.2018
+ */
+
 package schiffeversenken;
 import processing.core.PApplet;
 

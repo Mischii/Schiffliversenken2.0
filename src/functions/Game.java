@@ -1,3 +1,11 @@
+/**
+ * Game creator
+ * 
+ * @author	Lenny Johner, Michèle Habegger
+ * @version	1.0
+ * @since	17.04.2018
+ */
+
 package functions;
 
 import processing.core.PApplet;

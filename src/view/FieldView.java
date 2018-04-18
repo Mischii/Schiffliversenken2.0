@@ -1,3 +1,11 @@
+/**
+ * show the fields
+ * 
+ * @author	Lenny Johner, Michèle Habegger
+ * @version	1.0
+ * @since	17.04.2018
+ */
+
 package view;
 
 import basics.Processing;
@@ -16,8 +24,12 @@ public class FieldView extends Processing {
 		myPlayField = pf;
 	}
 
-
-	public void drawFields(boolean isRight, Variables myVar) {      // Felder zeichnen
+	/**
+	 * show the fields for the playfiels
+	 * @param isRight
+	 * @param myVar
+	 */
+	public void drawFields(boolean isRight, Variables myVar) {
 		float pos = (float)myVar.lBorder;
 		if (isRight == true) pos = (float)myVar.rBorder;
 		float iPos = (float) myVar.tBorder;

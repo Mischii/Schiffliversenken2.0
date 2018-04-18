@@ -1,3 +1,12 @@
+/**
+ * create the array and check the part of ships
+ * controlling the playfields
+ * 
+ * @author	Lenny Johner, Michèle Habegger
+ * @version	1.0
+ * @since	19.03.2018
+ */
+
 package functions;
 
 public class PlayField {
@@ -16,7 +25,9 @@ public class PlayField {
 	private final Feld[][] felderArray = new Feld[fWidth][fHeight];
 	int shipID = 1;
 		
-	//Felder-Array erstellen
+	/**
+	 * create the field array
+	 */
 	public PlayField() {
 		for (int i = 0; i < fWidth; i++) {
 			for (int j = 0; j < fHeight; j++) {
@@ -29,22 +40,37 @@ public class PlayField {
 	   return felderArray[i][j];
 	}
 	
+	/**
+	 * create new ships
+	 * initialize the length of the ships
+	 * @param maxSize
+	 */
 	public void startSettingNextShip (int maxSize) {
 		anzahlSchiffTeili = maxSize; // actual ship component
 		isFirstPart = true;
 		schiffSize = maxSize; 
 	}
-	  
+	/**
+	 * after placing ship prepare for next ship
+	 */
 	void resetSettings () {
 		anzahlSchiffTeili = 0; // actual ship component
 		schiffSize = 0; 
 	}
-		  
+	/**
+	 * control player placing ships
+	 * @return
+	 */
 	public boolean isPlacingAShip () {
 		if (anzahlSchiffTeili > 0) return true; // actual ship component
 			return false; 
 	}
-		  
+	
+	/**
+	 * control if player can set the first or next part of the ship
+	 * @param column
+	 * @param row
+	 */
 	public void tryToSetetShip(int column, int row) {
 		Feld f = felderArray[column][row];
 		if (anzahlSchiffTeili > 0) {
@@ -52,7 +78,7 @@ public class PlayField {
 				if (f.myZustand == 0) {
 					f.myZustand = 3;
 		            f.setShipSize(schiffSize);
-		            f.myShipID = shipID;// gesetzt
+		            f.myShipID = shipID; //set
 		            isFirstPart = false;
 		            updateWaterCross(column,row);
 		            lockWaterAngles(column,row);
@@ -63,7 +89,7 @@ public class PlayField {
 				if (f.myZustand == 1) {
 					f.myZustand = 3;
 		            f.setShipSize(schiffSize);
-		            f.myShipID = shipID;// gesetzt
+		            f.myShipID = shipID; //set
 		            System.out.println("Next("+column+","+row+")");
 		            updateWaterCross(column,row);
 		            lockWaterCross(column,row);
@@ -77,7 +103,12 @@ public class PlayField {
 			}
 		}
 	}
-		  
+	
+	/**
+	 * create water around the hole ship when it's the last part of the ship
+	 * @param column
+	 * @param row
+	 */
 	void lockLastWaterCrossPart (int column, int row) {
 		if (row > 0) 
 			if (felderArray[column][row-1].myZustand <= 1) {
@@ -106,7 +137,12 @@ public class PlayField {
 		    
 		    resetSettings();
 		  }
-		  
+	
+	/**
+	 * show the player which field can be placed with a ship
+	 * @param column
+	 * @param row
+	 */
 	void updateWaterCross(int column, int row) {
 		if (row > 0) {
 			if (felderArray[column][row-1].myZustand <= 1) {
@@ -129,7 +165,11 @@ public class PlayField {
 			}
 		}
 	}
-
+	/**
+	 * show the player which field can't be placed with a ship
+	 * @param column
+	 * @param row
+	 */
 	void lockWaterCross(int column, int row) {
 		// locate adjacent part
 		int aRow = -1;
@@ -164,7 +204,12 @@ public class PlayField {
 		}
 	}
 		  
-
+	
+	/**
+	 * show the player that he can't place a ship at the angle of the previous part
+	 * @param column
+	 * @param row
+	 */
 	void lockWaterAngles (int column, int row) {
 		if (row > 0 && column >0) 
 			if (felderArray[column-1][row-1].myZustand <= 1) felderArray[column-1][row-1].myZustand = 2; // wasser und setzen gesperrt
@@ -175,7 +220,13 @@ public class PlayField {
 		if (row < 9 && column >0) 
 			if (felderArray[column-1][row+1].myZustand <= 1) felderArray[column-1][row+1].myZustand = 2; // wasser und setzen gesperrt
 	}
-		  
+	
+	/**
+	 * change the state of the field if destroyed
+	 * count the number of destroyed ship parts
+	 * @param column
+	 * @param row
+	 */
 	public void schiessen(int column, int row){
 		int destroyed = 0;
 		felderArray[column][row].checkShooted();
@@ -192,7 +243,10 @@ public class PlayField {
 			}
 		}
 	}
-	
+	/**
+	 * if ship destroyed change state to drowned
+	 * @param id
+	 */
 	void toDestroy(int id) {
 		for (int i = 0; i < fWidth; i++) {
 			for (int j = 0; j < fHeight; j++) {
