@@ -11,27 +11,28 @@ package sockets;
  ******************************************************************************/
 
 import java.io.*;
-
+import java.net.ServerSocket;
 import java.net.Socket;
 
 public class MySocket {
 
 	final public static String defaultHostName = "localhost";
-	final public static String defaultProtocol = "https://";
-	final public static int defaultPortNumber = 80;
-	final public static int timeOut = 100; // loops
+	//final public static String defaultProtocol = "http://";
+	final public static int defaultPortNumber = 8080;
 	final public static boolean log = true; // T: activates logging on console (Sytsem.err)
 
     private Socket echoSocket;
     private PrintWriter out=null;
     private BufferedReader in=null;
 
-    private String myProtocol;
+    //private String myProtocol;
     private String myHostName;
     private String myPath = "";
     private String myFile = "";
     private int myPortNumber;
 
+    public String name = "client";
+    
     public MySocket () { 
     	setConnection (defaultHostName, defaultPortNumber, "");
     }
@@ -42,7 +43,7 @@ public class MySocket {
     
     private void setConnection (String newHost, int newPort, String pathAndFile) {
     	if (newHost != null && pathAndFile != null) {
-    		myProtocol = defaultProtocol; // TODO as Option
+    		//myProtocol = defaultProtocol; // TODO as Option
     		myHostName = newHost;
     		myPortNumber = newPort;
     		// TODO separate Path and File from pathAndFile
@@ -51,7 +52,7 @@ public class MySocket {
     	}
     }
     
-    private void myLog (String outText) {
+    public void myLog (String outText) {
     	if (log) {
     		// TODO add TimeStamps
             System.err.println(myHostName+":"+myPortNumber+"> "+outText);
@@ -61,7 +62,8 @@ public class MySocket {
     public void sendHostRequest () {
 	    try {
     		// Send a request to server
-    		out.println(myProtocol+myHostName); // TODO with myPath
+	    	//String r = "GET /dashboard/index.html HTTP/1.1\r\nHost: localhost\r\n";
+    		out.println("Hallo,Hallo"); // TODO with myPath
     	} catch (Exception e) {
     		e.printStackTrace();
     	    myLog("!!! request error");
@@ -84,13 +86,25 @@ public class MySocket {
 	    return "";
     }
 
-    void openServerConnection () {
+    public boolean sendLine (String serverOutput) {
+	    try {
+	    	out.println(serverOutput);
+    	    myLog("sending: "+serverOutput);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	    myLog("--- stream send println() error");
+    	    return false;
+    	}
+	    return true;
+    }
+
+    public void openServerConnection () {
     	try {
-            myLog("opening connection with client");
+            myLog("opening connection with "+name+":"+myHostName+":"+myPortNumber);
     	    echoSocket = new Socket(myHostName, myPortNumber);
-            myLog("opening output stream to server");
+            myLog("opening output stream to the other");
     	    out = new PrintWriter(echoSocket.getOutputStream(), true);
-            myLog("opening input stream from server");
+            myLog("opening input stream from the other");
     	    in =  new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
     	} catch (Exception e) {
     		e.printStackTrace();
@@ -98,34 +112,29 @@ public class MySocket {
     	}
     }
  
-    void closeSocketConnection () {
+    ServerSocket serverSocket;
+    
+    public void openServer () {
+    	try {
+            myLog("opening connection with "+name+":"+myHostName+":"+myPortNumber);
+    	    serverSocket = new ServerSocket(myPortNumber);
+    	    echoSocket = serverSocket.accept(); // TODO wartet auf client (nötig?)
+            myLog("opening output stream to the other");
+    	    out = new PrintWriter(echoSocket.getOutputStream(), true);
+            myLog("opening input stream from the other");
+    	    in =  new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	    myLog("### open server failed");
+    	}
+    }
+ 
+    public void closeSocketConnection () {
     	// nothing to do
         myLog("closing connection with client");
     }
 
 
-    // For Testing only:
-    public static void main (String [] args) {
-    	// USER: open XAMP Webserver Apache before start testing this
-    	MySocket s = new MySocket("localhost", 80, "");
-    	s.openServerConnection();
-    	s.sendHostRequest();
-        s.myLog("waiting for chars...");
-
-	    System.out.println("****************************");
-
-	    int timeCounts = timeOut;
-    	while (timeCounts > 0) {
-    		String txt = s.getLine();
-    		if (txt == null || txt =="") break;
-    		System.out.println(txt);
-        	timeCounts--;
-    	}
-    	
-    	System.out.println("****************************");
-        
-    	s.closeSocketConnection();
-    }
 }
 
 
