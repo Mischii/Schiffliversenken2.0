@@ -16,6 +16,7 @@ public class GameControler {
 	private PlayField player2Fields;
 	int myWidth;
 	int myHeight;
+	String activePlayer;
 	
 	int placeShips = 12;
 
@@ -30,6 +31,7 @@ public class GameControler {
 		player1Fields = new PlayField();
 		player2Fields = new PlayField();
 		player2Fields.setSchiffli = true;
+		activePlayer = "Spiler 2";
         player2Fields.startSettingNextShip(4);
         player2Fields.setetShip();
 	}
@@ -107,12 +109,12 @@ public class GameControler {
 		 */
 		if( (player2Fields.isPlacingAShip() == false) && 
 		    myGameView.getShape().checkHitboxButton(x,y,(float)(myWidth*0.45),(float)(myHeight*0.1))) {
-			myGameView.setBackgroundDark();
 			for (int r = 0; r <= 9; r++){
 				for (int c = 0;  c<=9;c++){
 					player2Fields.getFeld(c,r).changeColorSetShip();
 					player2Fields.setSchiffli = false;
 					player1Fields.setSchiffli = true;
+					activePlayer = "Spiler 1";
 				}
 			}
 		}
@@ -124,6 +126,7 @@ public class GameControler {
 					player1Fields.getFeld(c,r).changeColorSetShip();
 					player1Fields.setSchiffli = false;
 					player2Fields.itsTurn = true;
+					activePlayer = "Spiler 2";
 				}
 			}
 		}
@@ -137,12 +140,14 @@ public class GameControler {
 						player1Fields.schiessen(column, row);
 						player2Fields.itsTurn = false;
 						player1Fields.itsTurn = true;
+						activePlayer = "Spiler 1";
 					}
 				}else {
 					if((player2Fields.getFeld(column, row).myZustand == 0)||(player2Fields.getFeld(column, row).myZustand == 4)) {
 						player2Fields.schiessen(column, row);
 						player1Fields.itsTurn = false;
 						player2Fields.itsTurn = true;
+						activePlayer = "Spiler 2";
 					}
 				}
 			}

@@ -22,7 +22,7 @@ public class Shape extends Processing {
 	public void drawButton(float x, float y, String textButton){
 		parent.fill(80,5,5);
 		parent.rect(x,y,parent.width*0.1f,parent.height*0.1f);
-		writeText (x, y, textButton);
+		writeText ((float)(x+(parent.width*0.1/2)), (float)(parent.height*0.15), textButton, 255,255,255, 15);
 	}
 	
 	public boolean checkHitboxButton(float xMouse,float yMouse,float xButton,float yButton){
@@ -32,5 +32,6 @@ public class Shape extends Processing {
 			return false;
 		}
 	}
+	
 
 }

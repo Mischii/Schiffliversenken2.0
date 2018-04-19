@@ -18,10 +18,12 @@ public class Game extends PApplet {
 	GameView myGameView;
 	Variables myVar;
 	StartingThreads myThreads;
+	int w, h;
 
     // Processing
     public void settings() {
-		size(1600,900);
+    	fullScreen();
+    	size(1600,900);
 		if (surface != null)
 			surface.setResizable(true);
     }
@@ -34,9 +36,10 @@ public class Game extends PApplet {
     }
 
     public void draw(){
+    	myGameView.setBackgroundLight();
      	myVar = new Variables(width,height);
         myGameController.draw();
-    	myGameView.show(myVar);
+    	myGameView.show(myVar, myGameController.activePlayer);
     }
 
     public void mousePressed(){

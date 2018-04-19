@@ -13,16 +13,16 @@ public class Variables {
 	public double lBorder;
 	public double rBorder;
 	public double tBorder;
-	double bBorder;
+	public double bBorder;
 	public double pFSize;
 	public double fSize;
 
-	public Variables(int width, int height) {
-		lBorder = width*0.05;
-		rBorder = width*0.55;
-		tBorder = height-height*0.8;
-		pFSize = width*0.4;
-		fSize = width*0.04;
+	public Variables(int gWidth, int gHeight) {
+		lBorder = gWidth*0.05;
+		rBorder = gWidth*0.55;
+		tBorder = gHeight-gHeight*0.8;
+		pFSize = gWidth*0.4;
+		fSize = gWidth*0.04;
 	}
 
 

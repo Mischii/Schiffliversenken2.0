@@ -26,16 +26,12 @@ public class Processing {
 	/**
 	 * text output for button or players
 	 */
-	protected void writeText(float x, float y, String textButton){
-		parent.fill(255,255,255);
+	public void writeText(float x, float y, String textButton,int r,int g,int b, int size){
+		parent.fill(r,g,b);
 		parent.textAlign(PConstants.CENTER);
-		parent.textSize(15);
-		parent.text(textButton,(float)(x+(parent.width*0.1/2)),(float)(parent.height*0.15));
+		parent.textSize(size);
+		parent.text(textButton,x,y);
 	}
-
-    public void setBackgroundDark() {
-		parent.background(0,0,0);
-    }
     
     public void setBackgroundLight() {
 		parent.background(200,200,200);
