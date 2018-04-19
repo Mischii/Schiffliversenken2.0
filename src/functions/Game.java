@@ -22,7 +22,6 @@ public class Game extends PApplet {
 
     // Processing
     public void settings() {
-    	fullScreen();
     	size(1600,900);
 		if (surface != null)
 			surface.setResizable(true);
