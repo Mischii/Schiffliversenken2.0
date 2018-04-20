@@ -182,7 +182,6 @@ public class PlayField {
 			if (felderArray[column][row+1].myZustand  == 3) {aCol=column; aRow=row+1;} // found part
 		if (column < 9) 
 			if (felderArray[column+1][row].myZustand  == 3) {aCol=column+1; aRow=row;} // found part
-		System.out.println("Found("+aCol+","+aRow+")");
 		       
 		// try locking water on cross:  
 		if (row > 0) 

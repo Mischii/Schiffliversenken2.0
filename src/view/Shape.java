@@ -20,9 +20,9 @@ public class Shape extends Processing {
 	 * button template 
 	 */
 	public void drawButton(float x, float y, String textButton){
-		parent.fill(80,5,5);
+		parent.fill(173,107,117);
 		parent.rect(x,y,parent.width*0.1f,parent.height*0.1f);
-		writeText ((float)(x+(parent.width*0.1/2)), (float)(parent.height*0.15), textButton, 255,255,255, 15);
+		writeText ((float)(x+(parent.width*0.1/2)), (float)(parent.height*0.15), textButton, 0,0,0, 15);
 	}
 	
 	public boolean checkHitboxButton(float xMouse,float yMouse,float xButton,float yButton){
