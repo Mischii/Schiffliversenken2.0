@@ -42,4 +42,12 @@ public class FieldView extends Processing {
 			}
 		}
 	}
+	public void showInfos(float x, String activePlayer) {
+		writeText(x,(float)(parent.height*0.1), ("Es si "+(Integer.toString(myPlayField.shipID-1))+" vo 6 "+"Schiffli gsetzt"), 0,0,0, 20);
+		writeText(x,(float)(parent.height*0.15), ("Es si "+(Integer.toString(myPlayField.anzahlVersunkeneSchiffli))+" vo 6 "+"Schiffli abgschosse"), 0,0,0, 20);
+		writeText(x,(float)(parent.height*0.05), myPlayField.Player, 0,0,0, 20);
+		if (myPlayField.Player == activePlayer) {
+			writeText(x,(float)(parent.height*0.05), myPlayField.Player, 255,0,0, 20);
+		}
+	}
 }

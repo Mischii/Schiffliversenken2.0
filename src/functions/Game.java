@@ -18,7 +18,6 @@ public class Game extends PApplet {
 	GameView myGameView;
 	Variables myVar;
 	StartingThreads myThreads;
-	int w, h;
 
     // Processing
     public void settings() {
@@ -42,8 +41,22 @@ public class Game extends PApplet {
     }
 
     public void mousePressed(){
-        if (myGameController.winningPlayer() == true) {
+        if (myGameController.winningPlayer() == false) {
         	myGameController.buttonClicked(this.mouseX,this.mouseY,myVar, myGameView);
         	}
     }
+    
+    public void keyPressed() {
+		switch (key) {
+		case 'r': 
+			if(myGameController.restartGame == true) {
+				restartGame();
+			}
+			break;
+		}
+    }
+    
+	public void restartGame() {
+		setup();
+	}
 }

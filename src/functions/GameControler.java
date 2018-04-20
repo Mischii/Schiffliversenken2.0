@@ -12,6 +12,7 @@ import view.GameView;
 
 public class GameControler {
 
+	
 	private PlayField player1Fields;
 	private PlayField player2Fields;
 	int myWidth;
@@ -19,6 +20,7 @@ public class GameControler {
 	String activePlayer;
 	
 	int placeShips = 12;
+	boolean	restartGame = false;
 
 	/**
 	 * initialize both player
@@ -30,6 +32,8 @@ public class GameControler {
 		myHeight = height;
 		player1Fields = new PlayField();
 		player2Fields = new PlayField();
+		player1Fields.Player = "Spiler 1";
+		player2Fields.Player = "Spiler 2";
 		player2Fields.setSchiffli = true;
 		activePlayer = "Spiler 2";
         player2Fields.startSettingNextShip(4);
@@ -47,7 +51,6 @@ public class GameControler {
 	public void draw(){
     	if (!player2Fields.isPlacingAShip()) {
     		if (placeShips > 8) {
-    			System.out.println(placeShips);
     			player2Fields.startSettingNextShip(3);
                placeShips--;
             }
@@ -141,7 +144,6 @@ public class GameControler {
 						player2Fields.itsTurn = false;
 						player1Fields.itsTurn = true;
 						activePlayer = "Spiler 1";
-						winningPlayer();
 					}
 				}else {
 					if((player2Fields.getFeld(column, row).myZustand == 0)||(player2Fields.getFeld(column, row).myZustand == 4)) {
@@ -149,7 +151,6 @@ public class GameControler {
 						player1Fields.itsTurn = false;
 						player2Fields.itsTurn = true;
 						activePlayer = "Spiler 2";
-						winningPlayer();
 					}
 				}
 			}
@@ -157,16 +158,18 @@ public class GameControler {
 	}
 	
 	public boolean winningPlayer() {
-		if(activePlayer == "Spiler 1" || activePlayer == "Spiler 2") {
+		if(player1Fields.anzahlVersunkeneSchiffli == 6||player2Fields.anzahlVersunkeneSchiffli == 6) {
 			if(player1Fields.anzahlVersunkeneSchiffli == 6) {
 				activePlayer = "Dr Gwinner isch Spiler 1";
 			}
 			if(player2Fields.anzahlVersunkeneSchiffli == 6) {
 				activePlayer = "Dr Gwinner isch Spiler 2";
 			}
+			restartGame = true;
 			return true;
 		}else {
 			return false;
 		}
 	}
+	
 }

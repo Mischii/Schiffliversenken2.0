@@ -53,11 +53,11 @@ public class Feld {
 	 * check if destroyed
 	 */
 	public void checkShooted() {
-		//nicht getroffen
+		//not shoot
 		if(myZustand < 4) {
 			myZustand = 7;
 		}
-		//Getroffen
+		//shoot
 		if(myZustand == 4) {
 			myZustand = 5;
 		}

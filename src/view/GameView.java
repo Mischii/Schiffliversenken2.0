@@ -8,8 +8,6 @@
 
 package view;
 
-import javax.xml.soap.Text;
-
 import basics.Processing;
 import functions.PlayField;
 import functions.Variables;
@@ -38,10 +36,15 @@ public class GameView extends Processing {
 	public void show(Variables myVar, String activePlayer) {
 		bGround.show(myFieldViewPlayer1, myFieldViewPlayer2, myVar);
 		myShape.drawButton((float)(parent.width*0.45),(float)(parent.height*0.1),"Spiler wächsle!");
-		writeText((float)(parent.width/2),(float)(parent.height*0.05), activePlayer, 0,0,0, 50);
+		if(!(activePlayer =="Spiler 1"||activePlayer =="Spiler 2")) {
+			writeText((float)(parent.width/2),(float)(parent.height*0.05), activePlayer, 0,0,0, 50);
+		}
+		myFieldViewPlayer1.showInfos((float)(parent.width*0.225),activePlayer);
+		myFieldViewPlayer2.showInfos((float)(parent.width*0.725), activePlayer);
 	}
 	
 	public Shape getShape() {
 		return myShape;
 	}
+	
 }

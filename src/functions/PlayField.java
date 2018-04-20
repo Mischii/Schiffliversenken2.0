@@ -14,8 +14,8 @@ public class PlayField {
 	int anzahlSchiffTeili = 0; // actual ship component
 	int schiffSize = 0; // actual ship component
 	boolean isFirstPart=false;
-		 
-	int platzierteSchiffli = 0;
+	public String Player;
+	public int platzierteSchiffli = 0;
 	public boolean setSchiffli = false;
 	public boolean itsTurn = false;
 	int line = 10;
@@ -23,8 +23,9 @@ public class PlayField {
 	final int fHeight = 10;
 	final int zustand = 4;
 	private final Feld[][] felderArray = new Feld[fWidth][fHeight];
-	int shipID = 1;
-	int anzahlVersunkeneSchiffli = 0;
+	public int shipID = 1;
+	public int anzahlVersunkeneSchiffli = 0;
+	public int destroyed = 0;
 		
 	/**
 	 * create the field array
@@ -83,7 +84,6 @@ public class PlayField {
 		            isFirstPart = false;
 		            updateWaterCross(column,row);
 		            lockWaterAngles(column,row);
-		            System.out.println("First("+column+","+row+")");
 		            anzahlSchiffTeili--;
 				}
 			}else{
@@ -91,7 +91,6 @@ public class PlayField {
 					f.myZustand = 3;
 		            f.setShipSize(schiffSize);
 		            f.myShipID = shipID; //set
-		            System.out.println("Next("+column+","+row+")");
 		            updateWaterCross(column,row);
 		            lockWaterCross(column,row);
 		            lockWaterAngles(column,row);
@@ -257,6 +256,5 @@ public class PlayField {
 			}
 		}
 		anzahlVersunkeneSchiffli ++;
-		System.out.println(anzahlVersunkeneSchiffli);
 	}
 }
