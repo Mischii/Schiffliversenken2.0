@@ -42,6 +42,8 @@ public class Game extends PApplet {
     }
 
     public void mousePressed(){
-        myGameController.buttonClicked(this.mouseX,this.mouseY,myVar, myGameView);
+        if (myGameController.winningPlayer() == true) {
+        	myGameController.buttonClicked(this.mouseX,this.mouseY,myVar, myGameView);
+        	}
     }
 }

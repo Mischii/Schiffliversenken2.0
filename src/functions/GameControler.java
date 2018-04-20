@@ -141,6 +141,7 @@ public class GameControler {
 						player2Fields.itsTurn = false;
 						player1Fields.itsTurn = true;
 						activePlayer = "Spiler 1";
+						winningPlayer();
 					}
 				}else {
 					if((player2Fields.getFeld(column, row).myZustand == 0)||(player2Fields.getFeld(column, row).myZustand == 4)) {
@@ -148,9 +149,24 @@ public class GameControler {
 						player1Fields.itsTurn = false;
 						player2Fields.itsTurn = true;
 						activePlayer = "Spiler 2";
+						winningPlayer();
 					}
 				}
 			}
+		}
+	}
+	
+	public boolean winningPlayer() {
+		if(activePlayer == "Spiler 1" || activePlayer == "Spiler 2") {
+			if(player1Fields.anzahlVersunkeneSchiffli == 6) {
+				activePlayer = "Dr Gwinner isch Spiler 1";
+			}
+			if(player2Fields.anzahlVersunkeneSchiffli == 6) {
+				activePlayer = "Dr Gwinner isch Spiler 2";
+			}
+			return true;
+		}else {
+			return false;
 		}
 	}
 }

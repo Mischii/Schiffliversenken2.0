@@ -24,6 +24,7 @@ public class PlayField {
 	final int zustand = 4;
 	private final Feld[][] felderArray = new Feld[fWidth][fHeight];
 	int shipID = 1;
+	int anzahlVersunkeneSchiffli = 0;
 		
 	/**
 	 * create the field array
@@ -255,5 +256,7 @@ public class PlayField {
 				}
 			}
 		}
+		anzahlVersunkeneSchiffli ++;
+		System.out.println(anzahlVersunkeneSchiffli);
 	}
 }
