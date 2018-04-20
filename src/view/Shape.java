@@ -20,7 +20,7 @@ public class Shape extends Processing {
 	 * button template 
 	 */
 	public void drawButton(float x, float y, String textButton){
-		parent.fill(173,107,117);
+		parent.fill(137,137,137);
 		parent.rect(x,y,parent.width*0.1f,parent.height*0.1f);
 		writeText ((float)(x+(parent.width*0.1/2)), (float)(parent.height*0.15), textButton, 0,0,0, 15);
 	}

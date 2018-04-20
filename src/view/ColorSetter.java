@@ -26,17 +26,17 @@ public class ColorSetter extends Processing {
 		switch(zustand){
 			case(0): selectColor(30,125,230);	//Wasser das noch nicht besetzt ist
 			break;
-			case(1): selectColor(135,206,250);  	//Moeglichkeiten fuer das naechste Feld des Schiffes
+			case(1): selectColor(0,0,255);  	//Moeglichkeiten fuer das naechste Feld des Schiffes
 			break;
-			case(2): selectColor(188,143,143);  	//Wasser das neben einem Schiff liegt
+			case(2): selectColor(255,0,0);  	//Wasser das neben einem Schiff liegt
 			break;
 			case(3): selectColor(110,129,139);  //Ein Teil eines Schiffes
 			break;
 			case(4): selectColor(30,125,230);  //Wasser das  besetzt ist, damit der Gegner die SChiffe nicht sieht
 			break;
-			case(5): selectColor(128,0,0); //Getroffen,nicht versenkt
+			case(5): selectColor(255,215,0); //Getroffen,nicht versenkt
 			break;
-			case(6): selectColor(188,143,143); 		//Versenkt
+			case(6): selectColor(255,0,0); 		//Versenkt
 			break;
 			case(7): selectColor(0,0,0); 		//nicht getroffen
 			break;
