@@ -8,7 +8,7 @@ public class Server extends Thread {
 	public boolean isRunning = false;
 	
 	Server(String newHost, int newPort) {
-		mySocket = new MySocket (newHost, newPort,"");
+		mySocket = new MySocket (newHost, newPort);
 		mySocket.name = "server";
 	}
 	

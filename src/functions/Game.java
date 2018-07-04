@@ -9,6 +9,7 @@
 package functions;
 
 import processing.core.PApplet;
+import sockets.MySocket;
 import threads.StartingThreads;
 import view.GameView;
 
@@ -18,6 +19,7 @@ public class Game extends PApplet {
 	GameView myGameView;
 	Variables myVar;
 	StartingThreads myThreads;
+	MySocket client;
 
     // Processing
     public void settings() {
@@ -31,6 +33,9 @@ public class Game extends PApplet {
         myGameController = new GameControler(width,height);
 		myGameView = new GameView(this, myGameController.getPlayerFields(1), myGameController.getPlayerFields(2));
 		myThreads = new StartingThreads();
+    	client = new MySocket("10.0.0.104", 80);
+    	client.openServer();
+    	client.openServerConnection();
     }
 
     public void draw(){
@@ -38,12 +43,17 @@ public class Game extends PApplet {
      	myVar = new Variables(width,height);
         myGameController.draw();
     	myGameView.show(myVar, myGameController.activePlayer);
+    	String txt = client.getLine();
+    	if(txt!=null) {
+    		System.out.println(txt);
+    	}
     }
 
     public void mousePressed(){
         if (myGameController.winningPlayer() == false) {
         	myGameController.buttonClicked(this.mouseX,this.mouseY,myVar, myGameView);
         	}
+        client.sendLine("MousePressed");
     }
     
     public void keyPressed() {

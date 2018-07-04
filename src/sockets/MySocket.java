@@ -27,28 +27,23 @@ public class MySocket {
 
     //private String myProtocol;
     private String myHostName;
-    private String myPath = "";
-    private String myFile = "";
     private int myPortNumber;
 
     public String name = "client";
     
     public MySocket () { 
-    	setConnection (defaultHostName, defaultPortNumber, "");
+    	setConnection (defaultHostName, defaultPortNumber);
     }
 
-    public MySocket (String newHost, int newPort, String pathAndFile) {
-    	setConnection (newHost, newPort, pathAndFile);
+    public MySocket (String newHost, int newPort) {
+    	setConnection (newHost, newPort);
     }
     
-    private void setConnection (String newHost, int newPort, String pathAndFile) {
-    	if (newHost != null && pathAndFile != null) {
+    private void setConnection (String newHost, int newPort) {
+    	if (newHost != null) {
     		//myProtocol = defaultProtocol; // TODO as Option
     		myHostName = newHost;
     		myPortNumber = newPort;
-    		// TODO separate Path and File from pathAndFile
-    		myFile = pathAndFile; // TODO add a first "/" if not there
-    		myPath = "";
     	}
     }
     

@@ -4,7 +4,7 @@ import sockets.MySocket;
 
 public class StartingThreads {
 	static Server server = new Server("localhost", 80);
-	static MySocket client = new MySocket("localhost", 80, "");
+	static MySocket client = new MySocket("localhost", 80);
 	final public static int timeOut = 100; // loops
 
 	
@@ -13,7 +13,6 @@ public class StartingThreads {
     	server.start();
     	
 	    int timeCounts = timeOut*10;
-    	// USER: open XAMP Webserver Apache before start testing this
     	while (!server.isRunning) {
     		System.out.print("*");
         	timeCounts--;
@@ -24,7 +23,6 @@ public class StartingThreads {
     	client.myLog("waiting for chars...");
 
 	    System.out.println("****************************");
-
 	    timeCounts = timeOut;
     	while (timeCounts > 0) {
     		String txt = client.getLine();
