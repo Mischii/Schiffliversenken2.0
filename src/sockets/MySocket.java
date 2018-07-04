@@ -50,7 +50,7 @@ public class MySocket {
     public void myLog (String outText) {
     	if (log) {
     		// TODO add TimeStamps
-            System.err.println(myHostName+":"+myPortNumber+"> "+outText);
+            System.out.println(myHostName+":"+myPortNumber+"> "+outText);
     	}
     }
     

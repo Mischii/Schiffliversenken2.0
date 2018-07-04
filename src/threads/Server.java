@@ -7,7 +7,7 @@ public class Server extends Thread {
 	MySocket mySocket;	
 	public boolean isRunning = false;
 	
-	Server(String newHost, int newPort) {
+	public Server(String newHost, int newPort) {
 		mySocket = new MySocket (newHost, newPort);
 		mySocket.name = "server";
 	}
@@ -23,7 +23,7 @@ public class Server extends Thread {
 			isRunning = true;
 			mySocket.sendLine("Hallo");
 			maxLoops--;
-			if (maxLoops < 0) break;
+			//if (maxLoops < 0) break;
 		}
 		
 	}
