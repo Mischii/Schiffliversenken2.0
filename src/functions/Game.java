@@ -44,6 +44,8 @@ public class Game extends PApplet {
         myGameController.draw();
     	myGameView.show(myVar, myGameController.activePlayer);
     	if(toSend != null)server.sendLine(toSend);
+    	String txt = server.getLine();
+    	System.out.println(txt);
     }
 
     public void mousePressed(){
