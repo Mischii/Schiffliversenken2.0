@@ -20,6 +20,7 @@ public class Game extends PApplet {
 	GameView myGameView;
 	Variables myVar;
 	MySocket server;
+	MySocket client;
 	String toSend;
 
     // Processing
@@ -33,9 +34,10 @@ public class Game extends PApplet {
     	myVar = new Variables(width,height);
         myGameController = new GameControler(width,height);
 		myGameView = new GameView(this, myGameController.getPlayerFields(1), myGameController.getPlayerFields(2));
-    	server = new MySocket("10.0.0.104", 80);
-    	server.openServerConnection();
-    	server.sendHostRequest();
+    	server = new MySocket("10.0.0.103", 80);
+    	client = new MySocket("10.0.0.104", 80);
+    	client.openServerConnection();
+    	client.sendHostRequest();
     }
 
     public void draw(){
@@ -44,7 +46,7 @@ public class Game extends PApplet {
         myGameController.draw();
     	myGameView.show(myVar, myGameController.activePlayer);
     	if(toSend != null) {
-    		server.sendLine(toSend);
+    		client.sendLine(toSend);
     		toSend = null;
     	}
     	try {

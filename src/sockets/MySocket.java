@@ -92,7 +92,8 @@ public class MySocket {
     	}
 	    return true;
     }
-
+    ServerSocket serverSocket;
+    
     public void openServerConnection () {
     	try {
             myLog("opening connection with "+name+":"+myHostName+":"+myPortNumber);
@@ -107,8 +108,6 @@ public class MySocket {
     	}
     }
  
-    ServerSocket serverSocket;
-    
     public void openServer () {
     	try {
             myLog("opening connection with "+name+":"+myHostName+":"+myPortNumber);
