@@ -44,11 +44,8 @@ public class Game extends PApplet {
      	myVar = new Variables(width,height);
         myGameController.draw();
     	myGameView.show(myVar, myGameController.activePlayer);
-    	if(isServer) {
-        	server.tick();
-    	}else if(isClient) {
-    		client.tick();	
-    	}
+    	if(isServer) server.tick();
+    	if(isClient) client.tick();	
     }
     
 
