@@ -35,8 +35,8 @@ public class Game extends PApplet {
     	myVar = new Variables(width,height);
         myGameController = new GameControler(width,height);
 		myGameView = new GameView(this, myGameController.getPlayerFields(1), myGameController.getPlayerFields(2));
-    	server = new MySocket("10.0.0.103", 80);
-    	client = new MySocket("10.0.0.104", 80);
+    	server = new MySocket("192.168.0.104", 80);
+    	client = new MySocket("192.168.0.102", 80);
     }
 
     public void draw(){
@@ -45,16 +45,9 @@ public class Game extends PApplet {
         myGameController.draw();
     	myGameView.show(myVar, myGameController.activePlayer);
     	if(serverConnected) {
-	    	if(toSend != null) {
-	    		client.sendLine(toSend);
-	    		toSend = null;
-	    	}
-	    	try {
-	        	String txt = server.getLine();
-	        	System.out.println(txt);
-	    	}catch(Exception e){
-	    		
-	    	}
+    		client.sendLine("Hoi Michele");
+        	String txt = server.getLine();
+        	System.out.println(txt);
     	}
     }
     
