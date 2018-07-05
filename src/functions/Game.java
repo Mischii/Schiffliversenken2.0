@@ -23,6 +23,7 @@ public class Game extends PApplet {
 	MySocket client;
 	String toSend;
 	boolean serverConnected = false;
+	boolean isRunning =false;
 
     // Processing
     public void settings() {
@@ -44,11 +45,17 @@ public class Game extends PApplet {
      	myVar = new Variables(width,height);
         myGameController.draw();
     	myGameView.show(myVar, myGameController.activePlayer);
-    	if(serverConnected) {
-    		client.sendLine("Hoi Michele");
-        	String txt = server.getLine();
-        	System.out.println(txt);
-    	}
+    	if(isRunning) {
+		
+		server.sendLine("Hallo Client");
+		String txtS = server.getLine();
+		System.out.println(txtS);
+		String txtC = client.getLine();
+		if (!(txtC == null || txtC =="") ) {
+			System.out.println("receiving: "+txtC);
+			client.sendLine("Hallo, Server");
+		}
+		}
     }
     
 
@@ -67,9 +74,14 @@ public class Game extends PApplet {
 			}
 			break;
 		case 'o': 
-	    		client.openServerConnection();
-	    		client.sendHostRequest();
-	    		serverConnected = true;
+	    	server.myLog("server is running...");
+			isRunning = true;
+			server.openServer();
+			//mySocket.sendHostRequest();
+			server.myLog("server sends chars...");
+			client.openServerConnection();
+	    	client.sendHostRequest();
+	    	client.myLog("waiting for chars...");
 				break;
 		}
     }
