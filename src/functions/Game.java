@@ -67,9 +67,12 @@ public class Game extends PApplet {
 			break;
 		case 's': 
 			server = new server();
-				break;
+			isServer = true;
+			break;
 		case 'c':
 			client = new client(friendsIP, 80);
+			isClient = true;
+			break;
 		}
     }
     
