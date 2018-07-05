@@ -8,10 +8,10 @@
 
 package functions;
 
+import online.client;
+import online.server;
 import processing.core.PApplet;
 import sockets.MySocket;
-import threads.Server;
-import threads.StartingThreads;
 import view.GameView;
 
 public class Game extends PApplet {
@@ -19,12 +19,12 @@ public class Game extends PApplet {
 	GameControler myGameController;
 	GameView myGameView;
 	Variables myVar;
-	MySocket server;
-	MySocket client;
+	server server;
+	client client;
 	String toSend;
-	boolean serverConnected = false;
-	boolean isRunning =false;
 	String friendsIP = "192.168.0.104";
+	boolean isServer = false;
+	boolean isClient = false;
 
     // Processing
     public void settings() {
@@ -44,20 +44,10 @@ public class Game extends PApplet {
      	myVar = new Variables(width,height);
         myGameController.draw();
     	myGameView.show(myVar, myGameController.activePlayer);
-    	if (isRunning) {
-			String txt = server.getLine();
-			System.out.println(txt+" Test 1");
-			if(txt.equals("Action")) {
-				System.out.println(txt+" Test 2");
-				server.sendLine("Reaction");
-			}
-    	}
-    	if(serverConnected) {
-    		client.sendLine("Action");
-			String txt = client.getLine();
-			if(txt!=null) {
-				System.out.println(txt);
-			}
+    	if(isServer) {
+        	server.tick();
+    	}else if(isClient) {
+    		client.tick();	
     	}
     }
     
@@ -76,17 +66,10 @@ public class Game extends PApplet {
 			}
 			break;
 		case 's': 
-			server = new MySocket();
-			server.myLog("server is running...");
-			isRunning = true;
-			server.name = "server";
-			server.openServer();
+			server = new server();
 				break;
 		case 'c':
-			client = new MySocket(friendsIP,80);
-			client.openServerConnection();
-			client.sendHostRequest();
-			serverConnected= true;
+			client = new client(friendsIP, 80);
 		}
     }
     
@@ -94,11 +77,7 @@ public class Game extends PApplet {
 		setup();
 	}
 	public void stop() {
-		if(isRunning) {
 			server.closeSocketConnection();
-		}
-		if(serverConnected) {
 			client.closeSocketConnection();
-		}
 	}
 }
