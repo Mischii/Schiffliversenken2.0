@@ -43,10 +43,18 @@ public class Game extends PApplet {
      	myVar = new Variables(width,height);
         myGameController.draw();
     	myGameView.show(myVar, myGameController.activePlayer);
-    	if(toSend != null)server.sendLine(toSend);
-    	String txt = server.getLine();
-    	System.out.println(txt);
+    	if(toSend != null) {
+    		server.sendLine(toSend);
+    		toSend = null;
+    	}
+    	try {
+        	String txt = server.getLine();
+        	System.out.println(txt);
+    	}catch(Exception e){
+    		
+    	}
     }
+    
 
     public void mousePressed(){
         if (myGameController.winningPlayer() == false) {
