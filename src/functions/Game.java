@@ -22,6 +22,7 @@ public class Game extends PApplet {
 	MySocket server;
 	MySocket client;
 	String toSend;
+	boolean serverConnected = false;
 
     // Processing
     public void settings() {
@@ -36,8 +37,6 @@ public class Game extends PApplet {
 		myGameView = new GameView(this, myGameController.getPlayerFields(1), myGameController.getPlayerFields(2));
     	server = new MySocket("10.0.0.103", 80);
     	client = new MySocket("10.0.0.104", 80);
-    	client.openServerConnection();
-    	client.sendHostRequest();
     }
 
     public void draw(){
@@ -45,15 +44,17 @@ public class Game extends PApplet {
      	myVar = new Variables(width,height);
         myGameController.draw();
     	myGameView.show(myVar, myGameController.activePlayer);
-    	if(toSend != null) {
-    		client.sendLine(toSend);
-    		toSend = null;
-    	}
-    	try {
-        	String txt = server.getLine();
-        	System.out.println(txt);
-    	}catch(Exception e){
-    		
+    	if(serverConnected) {
+	    	if(toSend != null) {
+	    		client.sendLine(toSend);
+	    		toSend = null;
+	    	}
+	    	try {
+	        	String txt = server.getLine();
+	        	System.out.println(txt);
+	    	}catch(Exception e){
+	    		
+	    	}
     	}
     }
     
@@ -72,6 +73,11 @@ public class Game extends PApplet {
 				restartGame();
 			}
 			break;
+		case 'o': 
+	    		client.openServerConnection();
+	    		client.sendHostRequest();
+	    		serverConnected = true;
+				break;
 		}
     }
     
