@@ -24,6 +24,7 @@ public class Game extends PApplet {
 	String toSend;
 	boolean serverConnected = false;
 	boolean isRunning =false;
+	String friendsIP = "192.168.0.104";
 
     // Processing
     public void settings() {
@@ -36,8 +37,6 @@ public class Game extends PApplet {
     	myVar = new Variables(width,height);
         myGameController = new GameControler(width,height);
 		myGameView = new GameView(this, myGameController.getPlayerFields(1), myGameController.getPlayerFields(2));
-    	server = new MySocket("192.168.0.104", 80);
-    	client = new MySocket("192.168.0.102", 80);
     }
 
     public void draw(){
@@ -45,17 +44,19 @@ public class Game extends PApplet {
      	myVar = new Variables(width,height);
         myGameController.draw();
     	myGameView.show(myVar, myGameController.activePlayer);
-    	if(isRunning) {
-		
-		server.sendLine("Hallo Client");
-		String txtS = server.getLine();
-		System.out.println(txtS);
-		String txtC = client.getLine();
-		if (!(txtC == null || txtC =="") ) {
-			System.out.println("receiving: "+txtC);
-			client.sendLine("Hallo, Server");
-		}
-		}
+    	if (isRunning) {
+			String txt = server.getLine();
+			if(txt=="Action") {
+				server.sendLine("Reaction");
+			}
+    	}
+    	if(serverConnected) {
+    		client.sendLine("Action");
+			String txt = client.getLine();
+			if(txt!=null) {
+				System.out.println(txt);
+			}
+    	}
     }
     
 
@@ -63,7 +64,6 @@ public class Game extends PApplet {
         if (myGameController.winningPlayer() == false) {
         	myGameController.buttonClicked(this.mouseX,this.mouseY,myVar, myGameView);
         	}
-        toSend = "MousePressed";
     }
     
     public void keyPressed() {
@@ -73,16 +73,18 @@ public class Game extends PApplet {
 				restartGame();
 			}
 			break;
-		case 'o': 
-	    	server.myLog("server is running...");
+		case 's': 
+			server = new MySocket();
+			server.myLog("server is running...");
 			isRunning = true;
+			server.name = "server";
 			server.openServer();
-			//mySocket.sendHostRequest();
-			server.myLog("server sends chars...");
-			client.openServerConnection();
-	    	client.sendHostRequest();
-	    	client.myLog("waiting for chars...");
 				break;
+		case 'c':
+			client = new MySocket(friendsIP,80);
+			client.openServerConnection();
+			client.sendHostRequest();
+			serverConnected= true;
 		}
     }
     

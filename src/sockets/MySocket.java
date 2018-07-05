@@ -11,14 +11,15 @@ package sockets;
  ******************************************************************************/
 
 import java.io.*;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class MySocket {
 
-	final public static String defaultHostName = "localhost";
+	final public static String defaultHostName ="localhost";
 	//final public static String defaultProtocol = "http://";
-	final public static int defaultPortNumber = 8080;
+	final public static int defaultPortNumber = 80;
 	final public static boolean log = true; // T: activates logging on console (Sytsem.err)
 
     private Socket echoSocket;
@@ -73,10 +74,10 @@ public class MySocket {
 	    		return serverInput;
 	    	}
 	    	// TODO throw exception
-    	    myLog("--- streaming null line error");
+    	    //myLog("--- streaming null line error");
     	} catch (Exception e) {
-    		e.printStackTrace();
-    	    myLog("--- streaming readLine() error");
+    		//e.printStackTrace();
+    	    //myLog("--- streaming readLine() error");
     	}
 	    return "";
     }
@@ -86,8 +87,8 @@ public class MySocket {
 	    	out.println(serverOutput);
     	    myLog("sending: "+serverOutput);
     	} catch (Exception e) {
-    		e.printStackTrace();
-    	    myLog("--- stream send println() error");
+    		//e.printStackTrace();
+    	    //myLog("--- stream send println() error");
     	    return false;
     	}
 	    return true;
@@ -110,7 +111,7 @@ public class MySocket {
  
     public void openServer () {
     	try {
-            myLog("opening connection with "+name+":"+myHostName+":"+myPortNumber);
+            myLog("opening connection with "+name+":"+myPortNumber);
     	    serverSocket = new ServerSocket(myPortNumber);
     	    echoSocket = serverSocket.accept(); // TODO wartet auf client (nötig?)
             myLog("opening output stream to the other");
