@@ -17,7 +17,7 @@ import java.net.Socket;
 
 public class MySocket {
 
-	final public static String defaultHostName ="localhost";
+	public String defaultHostName ="localhost";
 	//final public static String defaultProtocol = "http://";
 	final public static int defaultPortNumber = 80;
 	final public static boolean log = true; // T: activates logging on console (Sytsem.err)
@@ -40,7 +40,7 @@ public class MySocket {
     	setConnection (newHost, newPort);
     }
     
-    private void setConnection (String newHost, int newPort) {
+    public void setConnection (String newHost, int newPort) {
     	if (newHost != null) {
     		//myProtocol = defaultProtocol; // TODO as Option
     		myHostName = newHost;
