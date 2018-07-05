@@ -46,7 +46,9 @@ public class Game extends PApplet {
     	myGameView.show(myVar, myGameController.activePlayer);
     	if (isRunning) {
 			String txt = server.getLine();
-			if(txt=="Action") {
+			System.out.println(txt+" Test 1");
+			if(txt.equals("Action")) {
+				System.out.println(txt+" Test 2");
 				server.sendLine("Reaction");
 			}
     	}
@@ -90,5 +92,13 @@ public class Game extends PApplet {
     
 	public void restartGame() {
 		setup();
+	}
+	public void stop() {
+		if(isRunning) {
+			server.closeSocketConnection();
+		}
+		if(serverConnected) {
+			client.closeSocketConnection();
+		}
 	}
 }

@@ -74,10 +74,10 @@ public class MySocket {
 	    		return serverInput;
 	    	}
 	    	// TODO throw exception
-    	    //myLog("--- streaming null line error");
+    	    myLog("--- streaming null line error");
     	} catch (Exception e) {
-    		//e.printStackTrace();
-    	    //myLog("--- streaming readLine() error");
+    		e.printStackTrace();
+    	    myLog("--- streaming readLine() error");
     	}
 	    return "";
     }
@@ -87,8 +87,8 @@ public class MySocket {
 	    	out.println(serverOutput);
     	    myLog("sending: "+serverOutput);
     	} catch (Exception e) {
-    		//e.printStackTrace();
-    	    //myLog("--- stream send println() error");
+    		e.printStackTrace();
+    	    myLog("--- stream send println() error");
     	    return false;
     	}
 	    return true;
